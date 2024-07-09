@@ -2,7 +2,7 @@ package bank.models;
 
 public class Empresa extends Pessoa {
     private String cnpj;
-    private double saldo;
+    final private double saldo=1000;
 
     public String getCnpj() {
         return cnpj;
@@ -16,7 +16,5 @@ public class Empresa extends Pessoa {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
+
 }

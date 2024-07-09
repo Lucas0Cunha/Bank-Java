@@ -1,14 +1,25 @@
 package bank.models;
 
 public class Emprestimo {
+
     private int id;
-    private double valor;
-    private double taxaJuros;
-    private int mesesDuracao;
-    private double valorParcela;
+    private static double valor;
+    private static double taxaJuros;
+    private static int mesesDuracao;
+    private static double valorParcela;
+    private static double valorfinal;
 
+    public static void parcela(){
+    valor = 10000;
+    mesesDuracao=10;
+    taxaJuros=3;
 
-    private void emprestimojuros(){
+    for (int i=0;i<9;i++ ){
+        valorParcela = (valor)*(taxaJuros/100);
+        valorfinal = (valorParcela*mesesDuracao) + valor;
+    }
+        System.out.println("O valor final pago no empréstimo é de:" +valorfinal);
+        System.out.println("Valor excedente é de:" +(valorfinal-valor));
 
     }
 

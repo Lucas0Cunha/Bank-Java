@@ -2,10 +2,10 @@ package bank.models;
 
 public class Pessoa {
 
-    private String email;
-    private String name;
-    private int id;
-    private String cpf;
+    protected String email;
+    protected String name;
+    protected int id;
+    protected String cpf;
 
 
 

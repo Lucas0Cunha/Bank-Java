@@ -1,11 +1,24 @@
 package bank.models;
 
 public class ContaCredito {
-    private double saldo;
+    final private double saldo=100;
     private int id;
     private String numero;
     private String dataValidade;
     private double limite;
+
+
+    public void PermissaoCredito(){
+
+        if (saldo==0 ){
+            System.out.println("Você não pode usar crédito, pois seu saldo é de 0");
+        }else if (saldo<0){
+            System.out.println("Você não pode ter crédito pois seu saldo está negativo");
+        }else{
+            System.out.println("Você está liberado ao uso de crédito");
+        }
+
+    }
 
 
     public int getId() {
@@ -55,7 +68,5 @@ public class ContaCredito {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
+
 }

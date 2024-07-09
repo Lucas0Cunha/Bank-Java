@@ -12,13 +12,9 @@ public class JurosComposto {
         juros = 0.85;
         tempo = 24;
 
-
-        double resultado = saldo;
-
-
         for (int i = 0; i < 24; i++) {
-       resultado = resultado * (1+(juros/100));
+       saldo = saldo * (1+(juros/100));
         }
-        System.out.println("O resultado é:" + resultado);
+        System.out.println("O resultado é:" + saldo);
     }
 }
