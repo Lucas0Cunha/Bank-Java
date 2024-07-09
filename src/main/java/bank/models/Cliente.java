@@ -1,20 +1,13 @@
 package bank.models;
 
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
 
-    final private double saldo=20;
-    private int id;
+	public Cliente() {
+		super();
+	}
 
+	public Cliente(String email, String name, int id, String cpfCnpj) {
+		super(email, name, id, cpfCnpj);
+	}
 
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

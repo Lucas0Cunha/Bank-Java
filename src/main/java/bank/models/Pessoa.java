@@ -1,12 +1,26 @@
 package bank.models;
 
-public class Pessoa {
+public abstract class Pessoa {
 
+	protected int id;
     protected String email;
     protected String name;
-    protected int id;
-    protected String cpf;
-
+    protected String cpfCnpj;
+    
+    public Pessoa() {
+	}
+    
+    public Pessoa(String email, String name, int id, String cpf) {
+    	this.setEmail(email);
+    	this.setName(name);
+    	this.setId(id);
+    	this.setCpf(cpf);
+    }
+    
+    public Pessoa(String name, int id) {
+    	this.setName(name);
+    	this.setId(id);
+    }
 
 
     public String getName() {
@@ -26,11 +40,11 @@ public class Pessoa {
     }
 
     public String getCpf() {
-        return cpf;
+        return cpfCnpj;
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.cpfCnpj = cpf;
     }
 
     public int getId() {

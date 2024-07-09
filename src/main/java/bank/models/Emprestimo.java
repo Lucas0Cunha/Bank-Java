@@ -2,65 +2,63 @@ package bank.models;
 
 public class Emprestimo {
 
-    private int id;
-    private static double valor;
-    private static double taxaJuros;
-    private static int mesesDuracao;
-    private static double valorParcela;
-    private static double valorfinal;
+	private int id;
+	private double valor;
+	private double taxaJuros;
+	private int mesesDuracao;
+	private double valorParcela;
+	private double valorfinal;
 
-    public static void parcela(){
-    valor = 10000;
-    mesesDuracao=10;
-    taxaJuros=3;
+	//TODO constructor
+	
+	public void parcela() {
 
-    for (int i=0;i<9;i++ ){
-        valorParcela = (valor)*(taxaJuros/100);
-        valorfinal = (valorParcela*mesesDuracao) + valor;
-    }
-        System.out.println("O valor final pago no empréstimo é de:" +valorfinal);
-        System.out.println("Valor excedente é de:" +(valorfinal-valor));
+		for (int i = 0; i < 9; i++) {
+			valorParcela = (valor) * (taxaJuros / 100);
+			valorfinal = (valorParcela * mesesDuracao) + valor;
+		}
+		System.out.println("O valor final pago no empréstimo é de:" + valorfinal);
+		System.out.println("Valor excedente é de:" + (valorfinal - valor));
 
-    }
+	}
 
+	public int getId() {
+		return id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public double getValor() {
+		return valor;
+	}
 
-    public double getValor() {
-        return valor;
-    }
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
 
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
+	public double getTaxaJuros() {
+		return taxaJuros;
+	}
 
-    public double getTaxaJuros() {
-        return taxaJuros;
-    }
+	public void setTaxaJuros(double taxaJuros) {
+		this.taxaJuros = taxaJuros;
+	}
 
-    public void setTaxaJuros(double taxaJuros) {
-        this.taxaJuros = taxaJuros;
-    }
+	public int getMesesDuracao() {
+		return mesesDuracao;
+	}
 
-    public int getMesesDuracao() {
-        return mesesDuracao;
-    }
+	public void setMesesDuracao(int mesesDuracao) {
+		this.mesesDuracao = mesesDuracao;
+	}
 
-    public void setMesesDuracao(int mesesDuracao) {
-        this.mesesDuracao = mesesDuracao;
-    }
+	public double getValorParcela() {
+		return valorParcela;
+	}
 
-    public double getValorParcela() {
-        return valorParcela;
-    }
-
-    public void setValorParcela(double valorParcela) {
-        this.valorParcela = valorParcela;
-    }
+	public void setValorParcela(double valorParcela) {
+		this.valorParcela = valorParcela;
+	}
 }
