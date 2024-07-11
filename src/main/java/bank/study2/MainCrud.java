@@ -30,6 +30,10 @@ public class MainCrud {
 
         System.out.println(lista.toString());
 
+
+
+
+
     }
 
     }
