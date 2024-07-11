@@ -28,6 +28,8 @@ public class MainCrud {
         lista.atualiza(0, a4);
         System.out.println(lista);
 
+        System.out.println(lista.toString());
+
     }
 
     }

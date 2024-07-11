@@ -22,6 +22,11 @@ public class Contas {
         return clientes[posicao];
     }
 
+    /**
+     * atualiza o cliente conforme a posição
+     * @param posicao
+     * @param clienteAtualizado
+     */
     public void atualiza(int posicao, Clientes clienteAtualizado) {
         if (!posicaoOcupada(posicao)) {
             throw new IllegalArgumentException("Posição inválida");
@@ -37,7 +42,7 @@ public class Contas {
     //[0] = Lucas, [1] = Antonio, [2] = Rodrigo, [3] = null, totalDeClientes = 3
     //[0] = Lucas, [1] = Rodrigo, [2] = null , totalDeClientes = 2
     public void remove(int posicao) {
-    	//TODO melhor o algoritmo da remoção
+
         if (posicao < 0 || posicao >= this.totalDeClientes) {
             throw new IllegalArgumentException("Posição inválida: " + posicao);
         }
@@ -67,12 +72,27 @@ public class Contas {
 
 
     public String toString() {
-        //facilitará na impressão
-        return Arrays.toString(clientes);
+        StringBuilder clientes = new StringBuilder();
+
+        /*
+        for (int i=0; i<this.clientes.length;i++){
+            Clientes cliente = this.clientes[i];
+
+            if (cliente!= null)
+                clientes.append("Nome: ").append(cliente.getNome()).append(" Cpf: ").append(cliente.getCpfcnpj()).append("\n");
+        } */
+
+        for (Clientes cliente:this.clientes){
+            if (cliente!= null)
+                clientes.append("Nome: ").append(cliente.getNome()).append(" Cpf: ").append(cliente.getCpfcnpj()).append("\n");
+
+        }
+        return clientes.toString();
     }
 
     private void garanteEspaco() {
         if(totalDeClientes == clientes.length) {
+
             Clientes[] novoArray = new Clientes[clientes.length*2];
             for(int i = 0; i < clientes.length; i++) {
                 novoArray[i] = clientes[i];
