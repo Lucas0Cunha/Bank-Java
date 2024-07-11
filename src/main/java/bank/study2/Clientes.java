@@ -1,15 +1,17 @@
-package bank.modelsCRUDArray;
+package bank.study2;
 
-public class Cliente {
+public class Clientes {
     String nome;
     int id;
     int cpfcnpj;
     double saldo;
 
-    public Cliente(int cpfcnpj,String nome) {
-        this.cpfcnpj = cpfcnpj;
+    public Clientes() {
+    }
 
+    public Clientes(String nome, int cpf) {
         this.nome = nome;
+        this.cpfcnpj = cpf;
     }
 
     public String getNome() {
@@ -23,8 +25,6 @@ public class Cliente {
     public int getId() {
         return id;
     }
-
-
 
     public int getCpfcnpj() {
         return cpfcnpj;
@@ -41,4 +41,17 @@ public class Cliente {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Clientes outro = (Clientes) obj;
+        return outro.getNome().equals(this.nome);
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+
+
 }

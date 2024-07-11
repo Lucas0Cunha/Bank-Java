@@ -1,4 +1,4 @@
-package bank.modelsCRUDArray;
+package bank.study2;
 
 public class FuncoesConta {
 

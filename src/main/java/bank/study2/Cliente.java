@@ -1,15 +1,14 @@
-package bank.modelsCRUDVetor;
+package bank.study2;
 
-public class Clientes {
+public class Cliente {
     String nome;
     int id;
     int cpfcnpj;
     double saldo;
 
-    public Clientes() {
-    }
+    public Cliente(int cpfcnpj,String nome) {
+        this.cpfcnpj = cpfcnpj;
 
-    public Clientes(String nome) {
         this.nome = nome;
     }
 
@@ -24,6 +23,8 @@ public class Clientes {
     public int getId() {
         return id;
     }
+
+
 
     public int getCpfcnpj() {
         return cpfcnpj;
@@ -40,17 +41,4 @@ public class Clientes {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        Clientes outro = (Clientes) obj;
-        return outro.getNome().equals(this.nome);
-    }
-
-    @Override
-    public String toString() {
-        return nome;
-    }
-
-
 }

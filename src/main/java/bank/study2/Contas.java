@@ -1,14 +1,15 @@
-package bank.modelsCRUDVetor;
+package bank.study2;
 
 import java.util.Arrays;
 
 public class Contas {
-    private Clientes[] clientes = new Clientes[100];
+    private Clientes[] clientes = new Clientes[3];
     private int totalDeClientes=0;
 
     public void adiciona(Clientes clientes) {
         this.garanteEspaco();
         this.clientes[totalDeClientes]= clientes;
+        //totalDeClientes = totalDeClientes + 1;
         totalDeClientes++;
     }
 
@@ -33,20 +34,32 @@ public class Contas {
         return posicao >= 0 && posicao < totalDeClientes;
     }
 
-
+    //[0] = Lucas, [1] = Antonio, [2] = Rodrigo, [3] = null, totalDeClientes = 3
+    //[0] = Lucas, [1] = Rodrigo, [2] = null , totalDeClientes = 2
     public void remove(int posicao) {
+    	//TODO melhor o algoritmo da remoção
         for(int i = posicao; i < this.totalDeClientes; i++) {
-            this.clientes[i] = this.clientes[i+1];
+        	if(i + 1 == this.clientes.length) {
+        		this.clientes[i] = null;
+        		break;
+        	}
+            this.clientes[i] = this.clientes[i + 1];
         }
-        totalDeClientes--;
+        //totalDeClientes = totalDeClientes - 1;
+        this.totalDeClientes--;
     }
 
     public boolean contem(Clientes cliente) {
-        for (int i = 0; i < totalDeClientes; i++) {
-            if (clientes[i].equals(cliente)) {
-                return true;
+    	if(cliente != null) {
+    		for (int i = 0; i < totalDeClientes; i++) {
+                if (clientes[i].getCpfcnpj() == cliente.getCpfcnpj()) {
+                    return true;
+                }
             }
-        }
+    	}else {
+    		System.out.println("Não é possível utilizar o método (contem) porque o cliente é null");
+    	}
+        
         return false;
     }
 
