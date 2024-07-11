@@ -1,4 +1,4 @@
-package bank.modelsCRUD;
+package bank.modelsCRUDVetor;
 
 import java.util.Arrays;
 
@@ -19,6 +19,14 @@ public class Contas {
         }
 
         return clientes[posicao];
+    }
+
+    public void atualiza(int posicao, Clientes clienteAtualizado) {
+        if (!posicaoOcupada(posicao)) {
+            throw new IllegalArgumentException("Posição inválida");
+        }
+
+        clientes[posicao] = clienteAtualizado;
     }
 
     private boolean posicaoOcupada(int posicao) {

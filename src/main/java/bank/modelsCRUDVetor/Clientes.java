@@ -1,6 +1,4 @@
-package bank.modelsCRUD;
-
-import java.util.Arrays;
+package bank.modelsCRUDVetor;
 
 public class Clientes {
     String nome;
