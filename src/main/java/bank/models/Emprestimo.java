@@ -9,8 +9,14 @@ public class Emprestimo {
 	private double valorParcela;
 	private double valorfinal;
 
-	//TODO constructor
-	
+	public Emprestimo(double valor, double taxaJuros, int mesesDuracao, double valorParcela, double valorfinal) {
+		this.valor = valor;
+		this.taxaJuros = taxaJuros;
+		this.mesesDuracao = mesesDuracao;
+		this.valorParcela = valorParcela;
+		this.valorfinal = valorfinal;
+	}
+
 	public void parcela() {
 
 		for (int i = 0; i < 9; i++) {

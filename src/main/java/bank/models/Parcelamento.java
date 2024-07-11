@@ -7,9 +7,17 @@ public class Parcelamento {
     private double taxaJuros;
     private int mesesDuracao;
     private double valorParcela;
-    private double valorfinal;
 
-    //TODO constructor
+    public Parcelamento(int id, double valor, double taxaJuros, int mesesDuracao, double valorParcela, double valorfinal) {
+        this.id = id;
+        this.valor = valor;
+        this.taxaJuros = taxaJuros;
+        this.mesesDuracao = mesesDuracao;
+        this.valorParcela = valorParcela;
+        this.valorfinal = valorfinal;
+    }
+
+    private double valorfinal;
 
     public void parcelar() {
 

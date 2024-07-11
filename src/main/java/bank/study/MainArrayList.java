@@ -9,7 +9,7 @@ public class MainArrayList {
         nomes.add("Lucas");
         nomes.add("Mario");
         nomes.add("Joao");
-        
+
         for (int i=0;i<nomes.size();i++){
             System.out.println(nomes.get(i));
 
