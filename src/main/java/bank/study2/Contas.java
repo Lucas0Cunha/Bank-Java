@@ -38,16 +38,18 @@ public class Contas {
     //[0] = Lucas, [1] = Rodrigo, [2] = null , totalDeClientes = 2
     public void remove(int posicao) {
     	//TODO melhor o algoritmo da remoção
-        for(int i = posicao; i < this.totalDeClientes; i++) {
-        	if(i + 1 == this.clientes.length) {
-        		this.clientes[i] = null;
-        		break;
-        	}
+        if (posicao < 0 || posicao >= this.totalDeClientes) {
+            throw new IllegalArgumentException("Posição inválida: " + posicao);
+        }
+        for(int i = posicao; i < this.totalDeClientes-1; i++) {
             this.clientes[i] = this.clientes[i + 1];
         }
+        this.clientes[this.totalDeClientes - 1] = null;
+
         //totalDeClientes = totalDeClientes - 1;
         this.totalDeClientes--;
     }
+
 
     public boolean contem(Clientes cliente) {
     	if(cliente != null) {
