@@ -2,10 +2,10 @@ package bank.study2;
 
 public class ClienteHash {
 
-        String nome;
-        int id;
-        Integer cpfcnpj;
-        double saldo;
+        private String nome;
+        private int id;
+        private Integer cpfcnpj;
+        private double saldo;
 
         public ClienteHash(String nome,Integer cpfcnpj ) {
             this.cpfcnpj = cpfcnpj;

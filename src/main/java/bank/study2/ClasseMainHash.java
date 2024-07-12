@@ -17,8 +17,8 @@ public class ClasseMainHash {
         System.out.println(lista.contemHash(111));
 
 
-        String x = lista.pegaHash(789);
-        System.out.println(x);
+        ClienteHash x = lista.pegaHash(Integer.valueOf(456));
+        System.out.println(x.getNome());
 
         lista.removeHash(456);
         System.out.println(lista.toStringHash());

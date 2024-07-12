@@ -49,29 +49,31 @@ public class RepositoryCliente {
         return listaCliente.toString();
     }
 
-    private Map<Integer, String> dataBaseMap = new HashMap<>();
+    private Map<Integer, ClienteHash> dataBaseMap = new HashMap<>();
 
     public void adicionaHash(ClienteHash cliente) {
-        dataBaseMap.put(cliente.getCpfcnpj(), cliente.getNome());
+        dataBaseMap.put(cliente.getCpfcnpj(), cliente);
     }
 
     public String toStringHash() {
         StringBuilder listaClienteHash = new StringBuilder();
-        for (Map.Entry<Integer, String> entry : dataBaseMap.entrySet()) {
-            listaClienteHash.append("Nome: ").append(entry.getValue()).append(" Cpf:").append(entry.getKey()).append("\n");
+        for (ClienteHash cliente : dataBaseMap.values()) {
+            listaClienteHash.append("Nome: ").append(cliente.getNome()).append(" Cpf:").append(cliente.getCpfcnpj()).append("\n");
         }
+
+       /* for (Map.Entry<Integer, ClienteHash> entry : dataBaseMap.entrySet()) {
+            listaClienteHash.append("Nome: ").append(entry.getValue()).append(" Cpf:").append(entry.getKey()).append("\n");
+        }*/
         return listaClienteHash.toString();
     }
 
-    public String pegaHash(Integer cpfcnpj) {
+    public ClienteHash pegaHash(Integer cpfcnpj) {
         return dataBaseMap.get(cpfcnpj);
     }
 
     public void removeHash(Integer cpfcnpj) {
 
         dataBaseMap.remove(cpfcnpj);
-
-
     }
 
     public int tamanhoHash() {
@@ -84,7 +86,7 @@ public class RepositoryCliente {
 
     public boolean atualizaHashMap(Integer cpfcnpj, ClienteHash novoCliente) {
         if (dataBaseMap.containsKey(cpfcnpj)) {
-            dataBaseMap.put(cpfcnpj, novoCliente.getNome());
+            dataBaseMap.put(cpfcnpj, novoCliente);
             return true;
         }
         return false;
