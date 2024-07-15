@@ -5,6 +5,10 @@ public class ContaCredito extends Conta {
 	private String dataValidade;
 	private double limite;
 
+	public ContaCredito(String numero, String cpfCnpj) {
+		super(numero, cpfCnpj);
+	}
+
 	public void PermissaoCredito(double saldo) {
 
 		if (saldo == 0) {

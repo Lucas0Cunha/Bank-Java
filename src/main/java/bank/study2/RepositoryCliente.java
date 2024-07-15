@@ -1,6 +1,5 @@
 package bank.study2;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +38,19 @@ public class RepositoryCliente {
         }
         return false;
     }
+
+    public boolean update(Cliente update) {
+        for (int i = 0; i < dataBase.size(); i++) {
+            Cliente currentItem = dataBase.get(i);
+
+            if (currentItem.getCpfcnpj() == update.cpfcnpj) {
+                  dataBase.set(i, update);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public String toString() {

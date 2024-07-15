@@ -6,15 +6,20 @@ public abstract class Pessoa {
     protected String email;
     protected String name;
     protected String cpfCnpj;
-    
+
     public Pessoa() {
+    }
+
+    public Pessoa(String name, String cpfCnpj) {
+        this.setName(name);
+        this.setCpfCnpj(cpfCnpj);
 	}
-    
-    public Pessoa(String email, String name, int id, String cpf) {
+
+    //retirei o ID para usar esse constructor em funcionarios
+    public Pessoa(String email, String name,String cpfCnpj) {
     	this.setEmail(email);
     	this.setName(name);
-    	this.setId(id);
-    	this.setCpf(cpf);
+    	this.setCpfCnpj(cpfCnpj);
     }
     
     public Pessoa(String name, int id) {
@@ -39,12 +44,12 @@ public abstract class Pessoa {
         this.email = email;
     }
 
-    public String getCpf() {
+    public String getCpfCnpj() {
         return cpfCnpj;
     }
 
-    public void setCpf(String cpf) {
-        this.cpfCnpj = cpf;
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
     }
 
     public int getId() {

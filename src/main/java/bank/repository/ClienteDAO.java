@@ -8,8 +8,9 @@ public interface ClienteDAO {
     public void inserir(Cliente cliente);
     public Cliente get(String cpfcnpj);
     public List<Cliente> getAll();
-
-    //pass
+    public void delete(Cliente cliente);
+    public boolean update(Cliente update);
+    public boolean contem(Cliente x);
 
 
 

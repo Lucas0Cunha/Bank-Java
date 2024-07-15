@@ -5,12 +5,16 @@ public class Funcionario extends Pessoa {
 	private String cargo;
 	private double salario;
 
+
 	public Funcionario() {
-		super();
 	}
 
-	public Funcionario(String email, String name, int id, String cpf) {
-		super(email, name, id, cpf);
+	public Funcionario(String name, String cpf) {
+		super(name, cpf);
+	}
+
+	public Funcionario(String email, String name, String cpf) {
+		super(email, name,cpf);
 	}
 
 	public String getCargo() {

@@ -1,10 +1,15 @@
 package bank.models;
 
-public abstract class Conta {
+public class Conta {
 
 	private int id;
 	private String numero;
 	private String cpfCnpj;
+
+	public Conta(String numero, String cpfCnpj) {
+		this.numero = numero;
+		this.cpfCnpj = cpfCnpj;
+	}
 
 	public Conta() {
 	}
