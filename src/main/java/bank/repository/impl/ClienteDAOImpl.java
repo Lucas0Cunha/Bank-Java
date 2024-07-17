@@ -56,5 +56,17 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
 
+    public enum tipoDeConta {
+        CPF, CNPJ;
+    }
+
+    @Override
+    public void infoDaConta (Cliente cliente){
+        if (cliente.getCpfCnpj().length()==5){
+        tipoDeConta tipoDeConta = ClienteDAOImpl.tipoDeConta.CNPJ;
+        System.out.println("A conta é: "+ cliente.getName() + "é do tipo" + tipoDeConta);
+    }else System.out.println("A conta de "+cliente.getName() + " é do tipo " + ClienteDAOImpl.tipoDeConta.CPF);
+    }
+
 
 }

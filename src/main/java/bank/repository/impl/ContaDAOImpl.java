@@ -1,5 +1,6 @@
 package bank.repository.impl;
 
+import bank.models.Cliente;
 import bank.models.Conta;
 import bank.repository.ContaDAO;
 
@@ -113,6 +114,17 @@ public class ContaDAOImpl implements ContaDAO {
                  }
             }
         }
+    public enum tipoDeConta {
+        CPF, CNPJ;
+    }
+
+    @Override
+    public void infoDaConta (Conta conta){
+        if (conta.getCpfCnpj().length()==5){
+            ContaDAOImpl.tipoDeConta tipoDeConta = ContaDAOImpl.tipoDeConta.CNPJ;
+            System.out.println("A conta de número: "+ conta.getNumero() + " é do tipo " + tipoDeConta);
+        }else System.out.println("A conta de número: "+ conta.getNumero() + " é do tipo " + tipoDeConta.CPF);
+    }
 
 
 

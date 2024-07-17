@@ -2,7 +2,7 @@ package bank.repository;
 
 import bank.models.Funcionario;
 
-public interface FuncionarioDAOImpl {
+public interface FuncionarioDAO {
     //Fazer com HashMap
     public void adiciona(Funcionario funcionario);
     public boolean contem(String cpfcnpj);
@@ -11,6 +11,7 @@ public interface FuncionarioDAOImpl {
     public int tamanho();
     public String toStringHash();
     Funcionario pega(String cpfcnpj);
+    public void infoDaConta (Funcionario funcionario);
 }
 
 

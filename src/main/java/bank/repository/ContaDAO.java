@@ -10,6 +10,6 @@ public interface ContaDAO {
     public boolean contem(Conta contas);
     public void listar();
     public String toString();
-
+    public void infoDaConta (Conta conta);
 
 }

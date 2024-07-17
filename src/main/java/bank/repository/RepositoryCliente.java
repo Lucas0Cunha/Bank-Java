@@ -22,7 +22,7 @@ public class RepositoryCliente {
         ClienteDAO dataBase = new ClienteDAOImpl();
         //isso precisa funcionar como o anterior  // n sei se era essa a resolução esperada
         Cliente a3 = new Cliente();
-        a3.setCpfCnpj("321");
+        a3.setCpfCnpj("3213");
         a3.setName("Sabrina");
         Cliente a4 = new Cliente();
         a4.setCpfCnpj("654");
@@ -30,6 +30,7 @@ public class RepositoryCliente {
         dataBase.inserir(a3);
         dataBase.inserir(a4);
         System.out.println(dataBase.get("654").getName());
+        dataBase.infoDaConta(a3);
     }
 
 

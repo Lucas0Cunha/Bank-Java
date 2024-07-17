@@ -1,12 +1,12 @@
 package bank.repository.impl;
 
 import bank.models.Funcionario;
-import bank.repository.FuncionarioDAOImpl;
+import bank.repository.FuncionarioDAO;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class FuncionarioImpl implements FuncionarioDAOImpl {
+public class FuncionarioDAOImpl implements FuncionarioDAO {
     //tentar aplicar Enum
     Map<String, Funcionario> funcionarios = new HashMap<>();
 
@@ -72,6 +72,17 @@ public class FuncionarioImpl implements FuncionarioDAOImpl {
         }
 
 
+    public enum tipoDeConta {
+        CPF, CNPJ;
+    }
+
+    @Override
+    public void infoDaConta (Funcionario funcionario){
+        if (funcionario.getCpfCnpj().length()==5){
+            FuncionarioDAOImpl.tipoDeConta tipoDeConta = FuncionarioDAOImpl.tipoDeConta.CNPJ;
+            System.out.println("A conta é: "+ funcionario.getName() + "é do tipo" + tipoDeConta);
+        }else System.out.println("A conta de "+funcionario.getName() + " é do tipo " + FuncionarioDAOImpl.tipoDeConta.CPF);
+    }
 
 
 
