@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FuncionarioImpl implements FuncionarioDAOImpl {
+    //tentar aplicar Enum
     Map<String, Funcionario> funcionarios = new HashMap<>();
 
     @Override
@@ -66,8 +67,8 @@ public class FuncionarioImpl implements FuncionarioDAOImpl {
 
     }
         @Override
-        public Funcionario pega(String cpfCnpj){
-            return funcionarios.get(cpfCnpj);
+        public Funcionario pega(String cpfcnpj){
+            return funcionarios.get(cpfcnpj);
         }
 
 

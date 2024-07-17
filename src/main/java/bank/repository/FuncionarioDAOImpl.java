@@ -10,7 +10,7 @@ public interface FuncionarioDAOImpl {
     public void remove(String cpfcnpj);
     public int tamanho();
     public String toStringHash();
-    Funcionario pega(String cpfCnpj);
+    Funcionario pega(String cpfcnpj);
 }
 
-//tentar aplicar Enum
+

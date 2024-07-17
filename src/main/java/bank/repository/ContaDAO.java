@@ -9,7 +9,7 @@ public interface ContaDAO {
     public void adiciona(Conta contas);
     public boolean contem(Conta contas);
     public void listar();
-
+    public String toString();
 
 
 }

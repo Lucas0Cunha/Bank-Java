@@ -9,8 +9,9 @@ public class Funcionario extends Pessoa {
 	public Funcionario() {
 	}
 
-	public Funcionario(String name, String cpf) {
-		super(name, cpf);
+	//PQ PRECISA SER PRIMEIRO O NAME DPS O CPF
+	public Funcionario(String cpfcnpj, String name) {
+		super(name,cpfcnpj);
 	}
 
 	public Funcionario(String email, String name, String cpf) {

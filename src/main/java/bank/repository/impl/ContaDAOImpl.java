@@ -1,6 +1,5 @@
 package bank.repository.impl;
 
-import bank.models.Cliente;
 import bank.models.Conta;
 import bank.repository.ContaDAO;
 
@@ -10,7 +9,7 @@ public class ContaDAOImpl implements ContaDAO {
     private Conta [] contas = new Conta[3];
     private int totalDeContas =0;
 
-    
+    @Override
     public void adiciona(Conta contas) {
         this.garanteEspaco();
         this.contas[totalDeContas]= contas;
@@ -18,6 +17,7 @@ public class ContaDAOImpl implements ContaDAO {
         totalDeContas++;
     }
 
+    @Override
     public Conta pega(int posicao) {
 
         if(!posicaoOcupada(posicao)) {
@@ -27,6 +27,7 @@ public class ContaDAOImpl implements ContaDAO {
         return contas[posicao];
     }
 
+    @Override
     public void atualiza(int posicao, Conta contaAtualizada) {
         if (!posicaoOcupada(posicao)) {
             throw new IllegalArgumentException("Posição inválida");
@@ -35,12 +36,14 @@ public class ContaDAOImpl implements ContaDAO {
         contas[posicao] = contaAtualizada;
     }
 
+
     private boolean posicaoOcupada(int posicao) {
         return posicao >= 0 && posicao < totalDeContas;
     }
 
     //[0] = Lucas, [1] = Antonio, [2] = Rodrigo, [3] = null, totalDeClientes = 3
     //[0] = Lucas, [1] = Rodrigo, [2] = null , totalDeClientes = 2
+    @Override
     public void remove(int posicao) {
 
         if (posicao < 0 || posicao >= this.totalDeContas) {
@@ -56,6 +59,7 @@ public class ContaDAOImpl implements ContaDAO {
     }
 
     //ERRADO NA PARTE DO IF MAS N SEI ARRUMAR
+     @Override
        public boolean contem(Conta contas) {
         if(contas != null) {
             for (int i = 0; i < totalDeContas; i++) {
@@ -70,9 +74,9 @@ public class ContaDAOImpl implements ContaDAO {
         return false;
     }
 
-
+    @Override
     public String toString() {
-        StringBuilder clientes = new StringBuilder();
+        StringBuilder contas = new StringBuilder();
 
         /*
         for (int i=0; i<this.clientes.length;i++){
@@ -84,10 +88,10 @@ public class ContaDAOImpl implements ContaDAO {
 
         for (Conta conta :this.contas){
             if (conta != null)
-                clientes.append("Numero da conta: ").append(conta.getNumero()).append(" Cpf ou Cnpj: ").append(conta.getCpfCnpj()).append("\n");
+                contas.append("Numero da conta: ").append(conta.getNumero()).append(" Cpf ou Cnpj: ").append(conta.getCpfCnpj()).append("\n");
 
         }
-        return clientes.toString();
+        return contas.toString();
     }
 
     private void garanteEspaco() {
@@ -101,6 +105,7 @@ public class ContaDAOImpl implements ContaDAO {
         }
     }
 
+        @Override
         public void listar()    {
         for (int i=0; i<contas.length; i++){
             if (contas[i]!=null){

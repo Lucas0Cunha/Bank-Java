@@ -6,8 +6,8 @@ public class Cliente extends Pessoa {
 		super();
 	}
 
-	public Cliente(String email, String name, int id, String cpfCnpj) {
-		super(email, name, id, cpfCnpj);
+	public Cliente(String email, String name, String cpfCnpj) {
+		super(email, name, cpfCnpj);
 	}
 
 }
