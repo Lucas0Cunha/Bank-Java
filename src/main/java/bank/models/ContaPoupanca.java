@@ -2,10 +2,10 @@ package bank.models;
 
 import bank.util.TipoConta;
 
-public class Contadebito extends Conta{
+public class ContaPoupanca extends Conta{
     double saldo;
 
-    public Contadebito(String name, String cpfCnpj) {
+    public ContaPoupanca(String name, String cpfCnpj) {
         super(name, cpfCnpj);
     }
 
@@ -19,6 +19,6 @@ public class Contadebito extends Conta{
 
 	@Override
 	public TipoConta getTipoConta() {
-		return TipoConta.DEBITO;
+		return TipoConta.POUPANCA;
 	}
 }

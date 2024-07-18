@@ -1,6 +1,8 @@
 package bank.models;
 
-public class Conta {
+import bank.util.TipoConta;
+
+public abstract class Conta {
 
 	private int id;
 	private String numero;
@@ -37,5 +39,12 @@ public class Conta {
 	public void setCpfCnpj(String cpfCnpj) {
 		this.cpfCnpj = cpfCnpj;
 	}
+	
+	public abstract TipoConta getTipoConta();
 
+	
+	@Override
+	public String toString() {
+		return "Conta [tipo: "+ this.getTipoConta() +", id=" + id + ", numero=" + numero + ", cpfCnpj=" + cpfCnpj + "]";
+	}
 }

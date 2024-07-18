@@ -6,7 +6,7 @@ import bank.repository.ContaDAO;
 public class ContaDAOImpl implements ContaDAO {
 
 
-    private Conta [] contas = new Conta[3];
+    private Conta[] contas = new Conta[3];
     private int totalDeContas =0;
 
     @Override
@@ -60,10 +60,11 @@ public class ContaDAOImpl implements ContaDAO {
 
     //ERRADO NA PARTE DO IF MAS N SEI ARRUMAR
      @Override
-       public boolean contem(Conta contas) {
+     public boolean contem(Conta conta) {
         if(contas != null) {
             for (int i = 0; i < totalDeContas; i++) {
-                if (contas.getCpfCnpj() == contas.getCpfCnpj()) {
+            	Conta contaIdx = this.contas[i];
+                if (conta.getId() == contaIdx.getId()) {
                     return true;
                 }
             }
@@ -72,26 +73,6 @@ public class ContaDAOImpl implements ContaDAO {
         }
 
         return false;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder contas = new StringBuilder();
-
-        /*
-        for (int i=0; i<this.clientes.length;i++){
-            Clientes cliente = this.clientes[i];
-
-            if (cliente!= null)
-                clientes.append("Nome: ").append(cliente.getNome()).append(" Cpf: ").append(cliente.getCpfcnpj()).append("\n");
-        } */
-
-        for (Conta conta :this.contas){
-            if (conta != null)
-                contas.append("Numero da conta: ").append(conta.getNumero()).append(" Cpf ou Cnpj: ").append(conta.getCpfCnpj()).append("\n");
-
-        }
-        return contas.toString();
     }
 
     private void garanteEspaco() {
@@ -106,28 +87,9 @@ public class ContaDAOImpl implements ContaDAO {
     }
 
     @Override
-    public void listar()    {
-        for (int i=0; i<contas.length; i++){
-            if (contas[i]!=null){
-                System.out.println(contas[i].toString());
-                 }
-            }
-        }
-
-    public enum tipoDeConta {
-        CPF, CNPJ;
+    public Conta[] getAll()    {
+    	return this.contas;
     }
-
-    @Override
-    public void infoDaConta (Conta conta){
-        if (conta.getCpfCnpj().length()==5){
-            ContaDAOImpl.tipoDeConta tipoDeConta = ContaDAOImpl.tipoDeConta.CNPJ;
-            System.out.println("A conta de número: "+ conta.getNumero() + " é do tipo " + tipoDeConta);
-        }else System.out.println("A conta de número: "+ conta.getNumero() + " é do tipo " + tipoDeConta.CPF);
-    }
-
-
-
 
 }
 

@@ -1,5 +1,7 @@
 package bank.models;
 
+import bank.util.TipoConta;
+
 public class ContaCredito extends Conta {
 
 	private String dataValidade;
@@ -35,6 +37,11 @@ public class ContaCredito extends Conta {
 
 	public void setLimite(double limite) {
 		this.limite = limite;
+	}
+
+	@Override
+	public TipoConta getTipoConta() {
+		return TipoConta.CREDITO;
 	}
 
 }

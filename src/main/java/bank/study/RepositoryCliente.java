@@ -1,8 +1,9 @@
-package bank.repository;
+package bank.study;
 
 import bank.models.Cliente;
-
+import bank.repository.ClienteDAO;
 import bank.repository.impl.ClienteDAOImpl;
+import bank.util.TipoDeCliente;
 
 
 public class RepositoryCliente {
@@ -26,13 +27,14 @@ public class RepositoryCliente {
         Cliente a3 = new Cliente();
         a3.setCpfCnpj("3213");
         a3.setName("Sabrina");
+        a3.setTipoCliente(TipoDeCliente.CPF);
         Cliente a4 = new Cliente();
         a4.setCpfCnpj("654");
         a4.setName("Luisa");
         dataBase.inserir(a3);
         dataBase.inserir(a4);
         System.out.println(dataBase.get("654").getName());
-        dataBase.infoDaConta(a3);
+        System.out.println("A3: \n" + a3.toString());
     }
 
 

@@ -1,5 +1,7 @@
 package bank.models;
 
+import bank.util.TipoConta;
+
 public class ContaSalario extends Conta{
 
 	private double saldo;
@@ -16,6 +18,9 @@ public class ContaSalario extends Conta{
 		this.saldo = saldo;
 	}
 	
-	
+	@Override
+	public TipoConta getTipoConta() {
+		return TipoConta.SALARIO;
+	}
 	
 }

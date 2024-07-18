@@ -1,6 +1,7 @@
-package bank.repository;
+package bank.study;
 
 import bank.models.Funcionario;
+import bank.repository.FuncionarioDAO;
 import bank.repository.impl.FuncionarioDAOImpl;
 
 public class RepositoryFuncionario {

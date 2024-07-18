@@ -8,8 +8,6 @@ public interface ContaDAO {
     public Conta pega(int posicao);
     public void adiciona(Conta contas);
     public boolean contem(Conta contas);
-    public void listar();
-    public String toString();
-    public void infoDaConta (Conta conta);
+    public Conta[] getAll();
 
 }
