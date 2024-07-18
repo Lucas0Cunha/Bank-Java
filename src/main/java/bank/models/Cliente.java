@@ -10,4 +10,12 @@ public class Cliente extends Pessoa {
 		super(email, name, cpfCnpj);
 	}
 
+
+	//Ajuda n entendi esse conceito tao bem ainda
+	@Override
+	public String toString() {
+		return  "CpfCnpj: " + cpfCnpj +
+				", name: " + name;}
+
+
 }

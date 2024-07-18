@@ -17,7 +17,9 @@ public class RepositoryCliente {
         clienteDAO.inserir(a1);
         clienteDAO.inserir(a2);
         System.out.println(clienteDAO.getAll());
-        System.out.println(clienteDAO.get("456"));
+
+        //acredito que não deveria funcionar assim
+        System.out.println(clienteDAO.get("123").getName());
 
         ClienteDAO dataBase = new ClienteDAOImpl();
         //isso precisa funcionar como o anterior  // n sei se era essa a resolução esperada

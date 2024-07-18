@@ -25,15 +25,17 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     @Override
-    public List<Cliente> getAll() {
-        return dataBase;
+    public String getAll() {
+        return dataBase.toString();
     }
+
 
     @Override
     public void delete(Cliente cliente) {
         dataBase.remove(cliente);
     }
 
+    @Override
     public boolean contem(Cliente x) {
         for (Cliente cliente : dataBase) {
             if (cliente.equals(x)) {
@@ -43,6 +45,7 @@ public class ClienteDAOImpl implements ClienteDAO {
         return false;
     }
 
+    @Override
     public boolean update(Cliente update) {
         for (int i = 0; i < dataBase.size(); i++) {
             Cliente currentItem = dataBase.get(i);

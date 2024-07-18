@@ -16,7 +16,7 @@ public class RepositoryConta {
 
 
         contaDAO.infoDaConta(a3);
-
+        contaDAO.listar();
       //  System.out.println(contaDAO.listar());
 
         System.out.println(contaDAO.pega(1));

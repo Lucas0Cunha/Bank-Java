@@ -1,6 +1,5 @@
 package bank.repository.impl;
 
-import bank.models.Cliente;
 import bank.models.Conta;
 import bank.repository.ContaDAO;
 
@@ -106,14 +105,15 @@ public class ContaDAOImpl implements ContaDAO {
         }
     }
 
-        @Override
-        public void listar()    {
+    @Override
+    public void listar()    {
         for (int i=0; i<contas.length; i++){
             if (contas[i]!=null){
-                System.out.println(contas[i]);
+                System.out.println(contas[i].toString());
                  }
             }
         }
+
     public enum tipoDeConta {
         CPF, CNPJ;
     }
