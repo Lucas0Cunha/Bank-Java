@@ -15,8 +15,8 @@ public class RepositoryCliente {
         Cliente a2 = new Cliente();
         a2.setCpfCnpj("456");
         a2.setName("Luis");
-        clienteDAO.inserir(a1);
-        clienteDAO.inserir(a2);
+        clienteDAO.add(a1);
+        clienteDAO.add(a2);
         System.out.println(clienteDAO.getAll());
 
         //acredito que não deveria funcionar assim
@@ -31,8 +31,8 @@ public class RepositoryCliente {
         Cliente a4 = new Cliente();
         a4.setCpfCnpj("654");
         a4.setName("Luisa");
-        dataBase.inserir(a3);
-        dataBase.inserir(a4);
+        dataBase.add(a3);
+        dataBase.add(a4);
         System.out.println(dataBase.get("654").getName());
         System.out.println("A3: \n" + a3.toString());
     }

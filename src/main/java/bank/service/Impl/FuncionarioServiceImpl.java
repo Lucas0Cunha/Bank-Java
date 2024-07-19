@@ -1,13 +1,15 @@
-package bank.repository.impl;
+package bank.service.Impl;
 
 import bank.models.Funcionario;
 import bank.repository.FuncionarioDAO;
+import bank.repository.impl.FuncionarioDAOImpl;
+import bank.service.FuncionarioService;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class FuncionarioDAOImpl implements FuncionarioDAO {
-
+public class FuncionarioServiceImpl implements FuncionarioService {
+    FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
     Map<String, Funcionario> funcionarios = new HashMap<>();
 
     @Override
@@ -20,7 +22,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
         for (Funcionario funcionario : funcionarios.values()) {
             if (funcionario.getCpfCnpj().equals(contem)) {
                 return true;
-    }
+            }
         }
         return false;}
 
@@ -30,12 +32,12 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
             funcionarios.put(update.getCpfCnpj(), update);
             return true;
         }
-       return false;
+        return false;
     }
 
     @Override
-    public void delete(Funcionario funcionario) {
-    funcionarios.remove(funcionario);
+    public void delete(Funcionario delete) {
+        funcionarios.remove(delete);
     }
 
     @Override
@@ -53,8 +55,6 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 
 
-
-
     public String toStringHash() {
         StringBuilder listaClienteHash = new StringBuilder();
         for (Funcionario funcionario : funcionarios.values()) {
@@ -67,17 +67,17 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
         return listaClienteHash.toString();
 
     }
-        @Override
-        public Funcionario get(String funcionario){
-            return this.funcionarios.get(funcionario);
-        }
+    @Override
+    public Funcionario get(String funcionario){
+        return this.funcionarios.get(funcionario);
+    }
 
 
     public enum tipoDeConta {
         CPF, CNPJ;
     }
 
-   @Override
+    @Override
     public void infoDaConta (Funcionario funcionario){
         if (funcionario.getCpfCnpj().length()==5){
             FuncionarioDAOImpl.tipoDeConta tipoDeConta = FuncionarioDAOImpl.tipoDeConta.CNPJ;
@@ -89,14 +89,4 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
     public Map<String, Funcionario> getAll() {
         return this.funcionarios;
     }
-
-
-
-
-
-
-
-
-
-
 }

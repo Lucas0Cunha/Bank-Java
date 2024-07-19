@@ -1,11 +1,9 @@
-package bank.repository.impl;
+package bank.service.Impl;
 
 import bank.models.Conta;
-import bank.repository.ContaDAO;
+import bank.service.ContaService;
 
-public class ContaDAOImpl implements ContaDAO {
-
-
+public class ContaServiceImpl implements ContaService {
     private Conta[] contas = new Conta[3];
     private int totalDeContas =0;
 
@@ -47,7 +45,6 @@ public class ContaDAOImpl implements ContaDAO {
     //[0] = Lucas, [1] = Antonio, [2] = Rodrigo, [3] = null, totalDeClientes = 3
     //[0] = Lucas, [1] = Rodrigo, [2] = null , totalDeClientes = 2
 
-//Alterar metodo para buscar o numero da conta
 
 
     @Override
@@ -65,11 +62,11 @@ public class ContaDAOImpl implements ContaDAO {
         this.totalDeContas--;
     }
 
-     @Override
-     public boolean contem(String nome) {
+    @Override
+    public boolean contem(String nome) {
         if(contas != null) {
             for (int i = 0; i < totalDeContas; i++) {
-            	Conta contaIdx = this.contas[i];
+                Conta contaIdx = this.contas[i];
                 if (nome.getId() == contaIdx.getId()) {
                     return true;
                 }
@@ -94,8 +91,7 @@ public class ContaDAOImpl implements ContaDAO {
 
     @Override
     public Conta[] getAll()    {
-    	return this.contas;
+        return this.contas;
     }
 
 }
-
