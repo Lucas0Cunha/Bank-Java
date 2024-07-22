@@ -12,8 +12,6 @@ import java.util.List;
 
 public class ClienteController {
     private ClienteService clienteService = new ClienteServiceImpl();
-    private ContaService contaService = new ContaServiceImpl();
-    private FuncionarioService funcionarioService = new FuncionarioServiceImpl();
 
     public void add(Cliente cliente){
         clienteService.add(cliente);

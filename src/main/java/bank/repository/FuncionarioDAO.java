@@ -8,9 +8,6 @@ public interface FuncionarioDAO extends GenericsInterface<Funcionario, String>{
 
     public Map<String, Funcionario> getAll();
 
-    public void infoDaConta (Funcionario funcionario);
-
-
 }
 
 

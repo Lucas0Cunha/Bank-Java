@@ -27,6 +27,10 @@ public abstract class Pessoa {
     	this.setId(id);
     }
 
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", email=" + email + ", name=" + name + ", cpfCnpj=" + cpfCnpj + "]";
+	}
 
     public String getName() {
         return name;

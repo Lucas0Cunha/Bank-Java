@@ -11,7 +11,6 @@ public interface FuncionarioService {
     public void delete(Funcionario delete);
     public String toString();
     public Funcionario get(String funcionario);
-    public void infoDaConta (Funcionario funcionario);
     public Map<String, Funcionario> getAll();
 
 

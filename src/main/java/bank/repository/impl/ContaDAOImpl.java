@@ -6,7 +6,7 @@ import bank.repository.ContaDAO;
 public class ContaDAOImpl implements ContaDAO {
 
 
-    private Conta[] contas = new Conta[3];
+    private Conta[] contas = new Conta[50];
     private int totalDeContas =0;
 
     @Override
@@ -19,24 +19,15 @@ public class ContaDAOImpl implements ContaDAO {
 
     //Alterar metodo para buscar o numero da conta
     @Override
-    public Conta get(String conta) {
+    public Conta get(String numeroConta) {
 
-        if(!posicaoOcupada(conta.getId())) {
-            throw new IllegalArgumentException("posiçao invalida");
+    	for (int i = 0; i < this.totalDeContas; i++) {
+        	Conta contaIdx = this.contas[i];
+            if (contaIdx.getNumero().equals(numeroConta)) {
+                return contaIdx;
+            }
         }
-
-        return contas[Integer.parseInt(conta)];
-    }
-
-
-
-    @Override
-    public void update(Conta conta, Conta contaAtualizada) {
-        if (!posicaoOcupada(conta.getId())) {
-            throw new IllegalArgumentException("Posição inválida");
-        }
-
-        contas[conta.getId()] = contaAtualizada;
+    	return null;
     }
 
 
@@ -66,11 +57,11 @@ public class ContaDAOImpl implements ContaDAO {
     }
 
      @Override
-     public boolean contem(String nome) {
+     public boolean contem(String numeroConta) {
         if(contas != null) {
             for (int i = 0; i < totalDeContas; i++) {
             	Conta contaIdx = this.contas[i];
-                if (nome.getId() == contaIdx.getId()) {
+                if (contaIdx.getNumero().equals(numeroConta)) {
                     return true;
                 }
             }
@@ -96,6 +87,23 @@ public class ContaDAOImpl implements ContaDAO {
     public Conta[] getAll()    {
     	return this.contas;
     }
+
+	@Override
+	public boolean update(Conta novaConta) {
+		
+		if(this.contem(novaConta.getNumero())) {
+			
+			for (int i = 0; i < this.totalDeContas; i++) {
+            	Conta contaIdx = this.contas[i];
+                if (contaIdx.getNumero().equals(novaConta.getNumero())) {
+                	this.contas[i] = novaConta;
+                    return true;
+                }
+            }
+		}
+
+        return false;
+	}
 
 }
 

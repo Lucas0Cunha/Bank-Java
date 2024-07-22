@@ -9,13 +9,17 @@ public class Funcionario extends Pessoa {
 	public Funcionario() {
 	}
 
-	//PQ PRECISA SER PRIMEIRO O NAME DPS O CPF
 	public Funcionario(String cpfcnpj, String name) {
 		super(name,cpfcnpj);
 	}
 
 	public Funcionario(String email, String name, String cpf) {
 		super(email, name,cpf);
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString() + "Cargo: " + this.cargo;
 	}
 
 	public String getCargo() {

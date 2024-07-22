@@ -16,7 +16,7 @@ public class RepositoryFuncionario {
         funcionario.add(a3);
         funcionario.add(a4);
 
-        funcionario.infoDaConta(a3);
+        System.out.println(funcionario.toString());
         System.out.println(funcionario.contem("5511"));
 
 

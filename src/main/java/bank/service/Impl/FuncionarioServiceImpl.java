@@ -72,19 +72,6 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         return this.funcionarios.get(funcionario);
     }
 
-
-    public enum tipoDeConta {
-        CPF, CNPJ;
-    }
-
-    @Override
-    public void infoDaConta (Funcionario funcionario){
-        if (funcionario.getCpfCnpj().length()==5){
-            FuncionarioDAOImpl.tipoDeConta tipoDeConta = FuncionarioDAOImpl.tipoDeConta.CNPJ;
-            System.out.println("A conta é: "+ funcionario.getName() + "é do tipo" + tipoDeConta);
-        }else System.out.println("A conta de "+funcionario.getName() + " é do tipo " + FuncionarioDAOImpl.tipoDeConta.CPF);
-    }
-
     @Override
     public Map<String, Funcionario> getAll() {
         return this.funcionarios;

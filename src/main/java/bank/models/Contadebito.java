@@ -5,8 +5,8 @@ import bank.util.TipoConta;
 public class Contadebito extends Conta{
     double saldo;
 
-    public Contadebito(String name, String cpfCnpj) {
-        super(name, cpfCnpj);
+    public Contadebito(String numero, String cpfCnpj) {
+        super(numero, cpfCnpj);
     }
 
     public double getSaldo() {

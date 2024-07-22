@@ -3,6 +3,8 @@ package bank.service.Impl;
 import bank.models.Conta;
 import bank.service.ContaService;
 
+// TODO arrumar o codigo para ficar parecido com o do ClienteServiceImpl
+// TODO fazer uma validacao para apenas permitir inserir contas que tenham clientes existentes
 public class ContaServiceImpl implements ContaService {
     private Conta[] contas = new Conta[3];
     private int totalDeContas =0;
