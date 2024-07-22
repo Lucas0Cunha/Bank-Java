@@ -17,13 +17,13 @@ public class ContaServiceImpl implements ContaService {
 
     //Alterar metodo para buscar o numero da conta
     @Override
-    public Conta get(String conta) {
+    public Conta get(Conta conta) {
 
         if(!posicaoOcupada(conta.getId())) {
             throw new IllegalArgumentException("posiçao invalida");
         }
 
-        return contas[Integer.parseInt(conta)];
+        return contas[Integer.parseInt(conta.toString())];
     }
 
 
@@ -63,11 +63,11 @@ public class ContaServiceImpl implements ContaService {
     }
 
     @Override
-    public boolean contem(String nome) {
+    public boolean contem(Conta conta) {
         if(contas != null) {
             for (int i = 0; i < totalDeContas; i++) {
                 Conta contaIdx = this.contas[i];
-                if (nome.getId() == contaIdx.getId()) {
+                if (conta.getId() == contaIdx.getId()) {
                     return true;
                 }
             }
