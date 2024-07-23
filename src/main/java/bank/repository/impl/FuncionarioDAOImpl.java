@@ -8,7 +8,9 @@ import java.util.Map;
 
 public class FuncionarioDAOImpl implements FuncionarioDAO {
 
-	Map<String, Funcionario> funcionarios = new HashMap<>();
+	//STATIC funciona pertencendo a CLASSE e não ao OBJETO, ou seja, funcionarios(nosso bd) não é algo nulo(zerado) quando a classe for instanciada
+	//ele vai com cada dado inserido por cada um dos distintos objetos que a utiliza.
+	private static Map<String, Funcionario> funcionarios = new HashMap<>();
 
 	@Override
 	public void add(Funcionario funcionario) {

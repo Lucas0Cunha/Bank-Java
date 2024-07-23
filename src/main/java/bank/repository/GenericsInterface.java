@@ -8,6 +8,11 @@ public interface GenericsInterface <T, I> {
 
         public T get(I i);
 
+        /**
+         * Este metodo serve para adicionar um cliente
+         * @throws RuntimeException
+         * @param </T>
+         */
         public void add(T t);
 
         public boolean contem(I i);

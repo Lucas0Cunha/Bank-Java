@@ -18,9 +18,9 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public void add(Cliente cliente) {
     	
-        if (cliente.getName().length()>5){
+        //if (cliente.getName().length()>5){
             clienteDAO.add(cliente);
-        }
+       // }
     }
 
 

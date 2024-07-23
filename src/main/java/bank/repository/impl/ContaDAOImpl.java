@@ -6,7 +6,7 @@ import bank.repository.ContaDAO;
 public class ContaDAOImpl implements ContaDAO {
 
 
-    private Conta[] contas = new Conta[50];
+    private static Conta[] contas = new Conta[50];
     private int totalDeContas =0;
 
     @Override

@@ -1,5 +1,6 @@
 package bank.service.Impl;
 
+import bank.exceptions.ClienteNaoExisteException;
 import bank.models.Conta;
 import bank.repository.ContaDAO;
 import bank.repository.impl.ContaDAOImpl;
@@ -13,12 +14,19 @@ public class ContaServiceImpl implements ContaService {
 	private ContaDAO contaDAO = new ContaDAOImpl();
 	private ClienteService clienteService = new ClienteServiceImpl();
 
+	/**
+	 *
+	 * @param conta
+	 * @throws ClienteNaoExisteException
+	 */
 	@Override
-	public void add(Conta conta) {
+	//o uso do throws funciona como um aviso ao dev que esse metodo pode vir a lançar um erro, apenas isso.
+	public void add(Conta conta) throws ClienteNaoExisteException {
 		if (clienteService.contem(conta.getCpfCnpj())) {
 			contaDAO.add(conta);
 		} else {
-			System.out.println("Não foi possível adicionar esta conta");
+			//throw new funciona bascimente para quando for "instanciar" uma classe que representa algum tipo de erro.
+			throw new ClienteNaoExisteException("Não existe cliente para a conta: " + conta.getNumero());
 		}
 	}
 

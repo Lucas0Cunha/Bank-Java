@@ -3,6 +3,7 @@ package bank.gui;
 import bank.models.ContaCredito;
 import bank.repository.impl.ContaDAOImpl;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ClienteGui {
@@ -18,6 +19,10 @@ public class ClienteGui {
             System.out.println("3. Tipo de Conta");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
+
+            try {
+
+
             int escolha = scanner.nextInt();
 
             switch (escolha) {
@@ -109,6 +114,9 @@ public class ClienteGui {
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
                     break;
+            }
+            }catch (InputMismatchException e){
+                e.printStackTrace();
             }
 
         }

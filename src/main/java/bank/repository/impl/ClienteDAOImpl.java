@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDAOImpl implements ClienteDAO {
-	private List<Cliente> dataBase = new ArrayList<>();
+	private static List<Cliente> dataBase = new ArrayList<>();
 
 	@Override
 	public void add(Cliente cliente) {
