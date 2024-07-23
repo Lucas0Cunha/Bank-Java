@@ -7,8 +7,7 @@ import bank.service.FuncionarioService;
 import java.util.Map;
 
 public class FuncionarioServiceImpl implements FuncionarioService {
-    FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
-
+    private FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
 
     @Override
     public void add(Funcionario funcionario) {

@@ -15,9 +15,9 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	@Override
-	public Cliente get(String clienteget) {
+	public Cliente get(String cpfCnpj) {
 		for (Cliente cliente : dataBase) {
-			if (cliente.getCpfCnpj().equalsIgnoreCase(clienteget)) {
+			if (cliente.getCpfCnpj().equalsIgnoreCase(cpfCnpj)) {
 				return cliente;
 			}
 		}
@@ -35,9 +35,9 @@ public class ClienteDAOImpl implements ClienteDAO {
 	}
 
 	@Override
-	public boolean contem(String clientecontem) {
+	public boolean contem(String cpfCnpj) {
 		for (Cliente cliente : dataBase) {
-			if (cliente.getCpfCnpj().equals(clientecontem)) {
+			if (cliente.getCpfCnpj().equals(cpfCnpj)) {
 				return true;
 			}
 		}

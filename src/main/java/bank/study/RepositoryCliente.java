@@ -23,18 +23,8 @@ public class RepositoryCliente {
         System.out.println(clienteDAO.get("123").getName());
 
         ClienteDAO dataBase = new ClienteDAOImpl();
-        //isso precisa funcionar como o anterior  // n sei se era essa a resolução esperada
-        Cliente a3 = new Cliente();
-        a3.setCpfCnpj("3213");
-        a3.setName("Sabrina");
-        a3.setTipoCliente(TipoDeCliente.CPF);
-        Cliente a4 = new Cliente();
-        a4.setCpfCnpj("654");
-        a4.setName("Luisa");
-        dataBase.add(a3);
-        dataBase.add(a4);
-        System.out.println(dataBase.get("654").getName());
-        System.out.println("A3: \n" + a3.toString());
+        //TODO isso precisa funcionar como o anterior  // n sei se era essa a resolução esperada
+        System.out.println(dataBase.get("123").getName());
     }
 
 

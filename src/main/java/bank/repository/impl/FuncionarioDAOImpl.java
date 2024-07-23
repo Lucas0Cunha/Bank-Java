@@ -36,37 +36,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 	@Override
 	public void delete(Funcionario funcionario) {
-		funcionarios.remove(funcionario);
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder listaClienteHash = new StringBuilder();
-		for (Funcionario funcionario : funcionarios.values()) {
-			listaClienteHash.append("Nome: ").append(funcionario.getName()).append(" Cpf:")
-					.append(funcionario.getCpfCnpj()).append("\n");
-		}
-
-		for (Map.Entry<String, Funcionario> entry : funcionarios.entrySet()) {
-			listaClienteHash.append("Nome: ").append(entry.getValue()).append(" Cpf:").append(entry.getKey())
-					.append("\n");
-		}
-		return listaClienteHash.toString();
-	}
-
-	public String toStringHash() {
-		StringBuilder listaClienteHash = new StringBuilder();
-		for (Funcionario funcionario : funcionarios.values()) {
-			listaClienteHash.append("Nome: ").append(funcionario.getName()).append(" Cpf:")
-					.append(funcionario.getCpfCnpj()).append("\n");
-		}
-
-		for (Map.Entry<String, Funcionario> entry : funcionarios.entrySet()) {
-			listaClienteHash.append("Nome: ").append(entry.getValue()).append(" Cpf:").append(entry.getKey())
-					.append("\n");
-		}
-		return listaClienteHash.toString();
-
+		funcionarios.remove(funcionario.getCpfCnpj());
 	}
 
 	@Override
