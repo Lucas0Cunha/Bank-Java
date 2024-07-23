@@ -4,76 +4,39 @@ import bank.models.Funcionario;
 import bank.repository.FuncionarioDAO;
 import bank.repository.impl.FuncionarioDAOImpl;
 import bank.service.FuncionarioService;
-
-import java.util.HashMap;
 import java.util.Map;
 
 public class FuncionarioServiceImpl implements FuncionarioService {
     FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
-    Map<String, Funcionario> funcionarios = new HashMap<>();
+
 
     @Override
     public void add(Funcionario funcionario) {
-        funcionarios.put(funcionario.getCpfCnpj(), funcionario);
+       funcionarioDAO.add(funcionario);
     }
 
     @Override
     public boolean contem(String contem) {
-        for (Funcionario funcionario : funcionarios.values()) {
-            if (funcionario.getCpfCnpj().equals(contem)) {
-                return true;
-            }
-        }
-        return false;}
+    return funcionarioDAO.contem(contem);
+    }
 
     @Override
     public boolean update(Funcionario update) {
-        if (this.contem(update.getCpfCnpj())){
-            funcionarios.put(update.getCpfCnpj(), update);
-            return true;
-        }
-        return false;
+      return funcionarioDAO.update(update);
     }
 
     @Override
     public void delete(Funcionario delete) {
-        funcionarios.remove(delete);
+      funcionarioDAO.delete(delete);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder listaClienteHash = new StringBuilder();
-        for (Funcionario funcionario : funcionarios.values()) {
-            listaClienteHash.append("Nome: ").append(funcionario.getName()).append(" Cpf:").append(funcionario.getCpfCnpj()).append("\n");
-        }
-
-        for (Map.Entry<String, Funcionario> entry : funcionarios.entrySet()) {
-            listaClienteHash.append("Nome: ").append(entry.getValue()).append(" Cpf:").append(entry.getKey()).append("\n");
-        }
-        return listaClienteHash.toString();
-    }
-
-
-
-    public String toStringHash() {
-        StringBuilder listaClienteHash = new StringBuilder();
-        for (Funcionario funcionario : funcionarios.values()) {
-            listaClienteHash.append("Nome: ").append(funcionario.getName()).append(" Cpf:").append(funcionario.getCpfCnpj()).append("\n");
-        }
-
-        for (Map.Entry<String, Funcionario> entry : funcionarios.entrySet()) {
-            listaClienteHash.append("Nome: ").append(entry.getValue()).append(" Cpf:").append(entry.getKey()).append("\n");
-        }
-        return listaClienteHash.toString();
-
-    }
     @Override
     public Funcionario get(String funcionario){
-        return this.funcionarios.get(funcionario);
+      return funcionarioDAO.get(funcionario);
     }
 
     @Override
     public Map<String, Funcionario> getAll() {
-        return this.funcionarios;
+      return funcionarioDAO.getAll();
     }
 }

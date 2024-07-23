@@ -1,48 +1,43 @@
 package bank.service.Impl;
 
 import bank.models.Conta;
+import bank.repository.ContaDAO;
+import bank.repository.impl.ContaDAOImpl;
 import bank.service.ContaService;
 
-// TODO arrumar o codigo para ficar parecido com o do ClienteServiceImpl
+
 // TODO fazer uma validacao para apenas permitir inserir contas que tenham clientes existentes
+
 public class ContaServiceImpl implements ContaService {
-    private Conta[] contas = new Conta[3];
-    private int totalDeContas =0;
+   ContaDAO contaDAO = new ContaDAOImpl();
 
     @Override
     public void add(Conta contas) {
-        this.garanteEspaco();
-        this.contas[totalDeContas]= contas;
-        //totalDeClientes = totalDeClientes + 1;
-        totalDeContas++;
+        if (contas.getNumero().equalsIgnoreCase(String.valueOf(contaDAO.contem(contas.toString())))){
+       contaDAO.add(contas);}
+        else {
+            System.out.println("Não foi possível adicionar esta conta"); ;
+        }
     }
 
     //Alterar metodo para buscar o numero da conta
     @Override
     public Conta get(Conta conta) {
 
-        if(!posicaoOcupada(conta.getId())) {
-            throw new IllegalArgumentException("posiçao invalida");
-        }
-
-        return contas[Integer.parseInt(conta.toString())];
+       return contaDAO.get(conta.toString());
     }
 
 
 
     @Override
     public void update(Conta conta, Conta contaAtualizada) {
-        if (!posicaoOcupada(conta.getId())) {
-            throw new IllegalArgumentException("Posição inválida");
-        }
-
-        contas[conta.getId()] = contaAtualizada;
+      contaDAO.update(contaAtualizada);
     }
 
 
-    private boolean posicaoOcupada(int posicao) {
-        return posicao >= 0 && posicao < totalDeContas;
-    }
+   // private boolean posicaoOcupada(int posicao) {
+   //  return contaDAO.
+   // }
 
     //[0] = Lucas, [1] = Antonio, [2] = Rodrigo, [3] = null, totalDeClientes = 3
     //[0] = Lucas, [1] = Rodrigo, [2] = null , totalDeClientes = 2
@@ -52,48 +47,19 @@ public class ContaServiceImpl implements ContaService {
     @Override
     public void delete(Conta conta) {
 
-        if (conta.getId() < 0 || conta.getId() >= this.totalDeContas) {
-            throw new IllegalArgumentException("Posição inválida: " + conta);
-        }
-        for(int i = conta.getId(); i < this.totalDeContas -1; i++) {
-            this.contas[i] = this.contas[i + 1];
-        }
-        this.contas[this.totalDeContas - 1] = null;
-
-        //totalDeClientes = totalDeClientes - 1;
-        this.totalDeContas--;
+        contaDAO.delete(conta);
     }
 
     @Override
     public boolean contem(Conta conta) {
-        if(contas != null) {
-            for (int i = 0; i < totalDeContas; i++) {
-                Conta contaIdx = this.contas[i];
-                if (conta.getId() == contaIdx.getId()) {
-                    return true;
-                }
-            }
-        }else {
-            System.out.println("Não é possível utilizar o método (contem) porque o cliente é null");
-        }
-
-        return false;
+     return contaDAO.contem(conta.toString());
     }
 
-    private void garanteEspaco() {
-        if(totalDeContas == contas.length) {
 
-            Conta[] novoArray = new Conta[contas.length*2];
-            for(int i = 0; i < contas.length; i++) {
-                novoArray[i] = contas[i];
-            }
-            this.contas = novoArray;
-        }
-    }
 
     @Override
     public Conta[] getAll()    {
-        return this.contas;
+       return contaDAO.getAll();
     }
 
 }
