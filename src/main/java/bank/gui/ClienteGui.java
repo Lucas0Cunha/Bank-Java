@@ -1,15 +1,14 @@
 package bank.gui;
 
-import bank.models.ContaCredito;
-import bank.repository.impl.ContaDAOImpl;
+import bank.controller.ClienteController;
+import bank.controller.ContaController;
+import bank.controller.FuncionarioController;
+import bank.models.*;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ClienteGui {
     public static void main(String[] args) {
-//FAZER O MENU DO USUARIO
-
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -23,34 +22,121 @@ public class ClienteGui {
             try {
 
 
-            int escolha = scanner.nextInt();
+                int escolha = scanner.nextInt();
 
-            switch (escolha) {
-                case 0:
-                    System.out.println("Encerrando o programa...");
-                    return;
-                case 1:
+                switch (escolha) {
+                    case 0:
+                        System.out.println("Encerrando o programa...");
+                        return;
+                    case 1:
+                        ClienteController clienteController = new ClienteController();
+                        Cliente Gui = new Cliente();
+                        boolean continuar = true;
+                        while (continuar) {
+                            System.out.println("Escolha a operação:");
+                            System.out.println("1. Cadastrar cliente");
+                            System.out.println("2. Buscar cliente");
+                            System.out.println("3. Atualizar cliente");
+                            System.out.println("4. Deletar cliente");
+                            //melhorar o case 0
+                            System.out.println("0. Voltar ao menu principal");
+                            int opcao = scanner.nextInt();
+                            switch (opcao) {
+                                case 1:
 
-                    System.out.println("CRUD");
-                    break;
-                case 2:
+                                    System.out.println("Digite o nome do cliente:");
+                                    Gui.setName(scanner.next());
+                                    System.out.println("Digite o CPF do cliente:");
+                                    Gui.setCpfCnpj(scanner.next());
+                                    clienteController.add(Gui);
+                                    break;
+                                case 2:
+                                    System.out.println("Digite o CPF do cliente que deseja buscar:");
+                                    Gui.setCpfCnpj(scanner.next());
+                                    clienteController.get(Gui.getCpfCnpj());
+                                    break;
+                                case 3:
+                                    System.out.println("Digite o novo nome do cliente:");
+                                    Gui.setName(scanner.next());
+                                    clienteController.update(Gui);
+                                    break;
+                                case 4:
+                                    System.out.println("Você tem certeza que quer deletar sua conta");
+                                    if (scanner.next().equalsIgnoreCase("Sim")) {
+                                        clienteController.delete(Gui);
+                                    } else break;
+                                case 0:
+                                    System.out.println("Saindo...");
+                                    continuar = false;
+                                    break;
+                                default:
+                                    System.out.println("Opção inválida! Digite um número de 1 a 5.");
+                                    break;
+                            }
+                        }
+                        scanner.close();
 
-                    System.out.println("CRUD");
-                    break;
-                case 3:
+                        break;
+                    case 2:
 
-                    while (true) {
-                        System.out.println("\n### Tipos de Conta ###");
-                        System.out.println("1. Conta Crédito");
-                        System.out.println("2. Conta Débito");
-                        System.out.println("3. Conta Poupança");
-                        System.out.println("4. Conta Salário");
-                        System.out.println("0. Voltar ao menu principal");
-                        System.out.print("Escolha um tipo de conta: ");
-                        int tipoConta = scanner.nextInt();
+                        FuncionarioController funcionarioController = new FuncionarioController();
+                        Funcionario Gui1 = new Funcionario();
+                        boolean next = true;
+                        while (next) {
+                            System.out.println("Escolha a operação:");
+                            System.out.println("1. Cadastrar cliente");
+                            System.out.println("2. Buscar cliente");
+                            System.out.println("3. Atualizar cliente");
+                            System.out.println("4. Deletar cliente");
+                            System.out.println("0. Voltar ao menu principal");
+                            int opcao = scanner.nextInt();
+                            switch (opcao) {
+                                case 1:
 
-                        switch (tipoConta) {
-                            case 0:
+                                    System.out.println("Digite o nome do cliente:");
+                                    Gui1.setName(scanner.next());
+                                    System.out.println("Digite o CPF do cliente:");
+                                    Gui1.setCpfCnpj(scanner.next());
+                                    funcionarioController.add(Gui1);
+                                    break;
+                                case 2:
+                                    System.out.println("Digite o CPF do cliente que deseja buscar:");
+                                    Gui1.setCpfCnpj(scanner.next());
+                                    funcionarioController.get(Gui1.getCpfCnpj());
+                                    break;
+                                case 3:
+                                    System.out.println("Digite o novo nome do cliente:");
+                                    Gui1.setName(scanner.next());
+                                    funcionarioController.update(Gui1);
+                                    break;
+                                case 4:
+                                    System.out.println("Você tem certeza que quer deletar sua conta");
+                                    if (scanner.next().equalsIgnoreCase("Sim")) {
+                                        funcionarioController.delete(Gui1);
+                                    } else break;
+                                case 0:
+                                    System.out.println("Saindo...");
+                                    next = false;
+                                    break;
+
+                                System.out.println("Opção inválida! Digite um número de 1 a 5.");
+                                break;
+                            }
+                        }
+                    case 3:
+
+                        while (true) {
+                            System.out.println("\n### Tipos de Conta ###");
+                            System.out.println("1. Conta Crédito");
+                            System.out.println("2. Conta Débito");
+                            System.out.println("3. Conta Poupança");
+                            System.out.println("4. Conta Salário");
+                            System.out.println("0. Voltar ao menu principal");
+                            System.out.print("Escolha um tipo de conta: ");
+                            int tipoConta = scanner.nextInt();
+
+                            switch (tipoConta) {
+                                case 0:
                                     System.out.println("\n### Menu ###");
                                     System.out.println("1. Cliente");
                                     System.out.println("2. Funcionário");
@@ -64,63 +150,202 @@ public class ClienteGui {
                                             return;
                                         case 1:
 
-                                            System.out.println("CRUD");
-                                            break;
-                                        case 2:
+                                            ContaController contaController = new ContaController();
+                                            ContaCredito guiCred = new ContaCredito();
+                                            boolean next1 = true;
+                                            while (next1) {
+                                                System.out.println("Escolha a operação:");
+                                                System.out.println("1. Cadastrar cliente");
+                                                System.out.println("2. Buscar cliente");
+                                                System.out.println("3. Atualizar cliente");
+                                                System.out.println("4. Deletar cliente");
+                                                System.out.println("0. Voltar ao menu principal");
+                                                int opcao = scanner.nextInt();
+                                                switch (opcao) {
+                                                    case 1:
+                                                        //n deve ser fornecido pelo usuario arrumar dps
+                                                        System.out.println("Digite o número do cliente:");
+                                                        guiCred.setNumero(scanner.next());
+                                                        System.out.println("Digite o CPF do cliente:");
+                                                        guiCred.setCpfCnpj(scanner.next());
+                                                        contaController.add(guiCred);
+                                                        break;
+                                                    case 2:
+                                                        System.out.println("Digite o CPF do cliente que deseja buscar:");
+                                                        guiCred.setCpfCnpj(scanner.next());
+                                                        contaController.get(guiCred.getCpfCnpj());
+                                                        break;
+                                                    case 3:
+                                                        System.out.println("Digite o novo número do cliente:");
+                                                        guiCred.setNumero(scanner.next());
+                                                        contaController.update(guiCred);
+                                                        break;
+                                                    case 4:
+                                                        System.out.println("Você tem certeza que quer deletar sua conta");
+                                                        if (scanner.next().equalsIgnoreCase("Sim")) {
+                                                            contaController.delete(guiCred);
+                                                        } else break;
+                                                    case 0:
+                                                        System.out.println("Saindo...");
+                                                        next1 = false;
+                                                        break;
 
-                                            System.out.println("CRUD");
-                                            break;
-                                        case 3:
-                                        break;
-                                        case 4:
-                              /*
-                                ContaSalario contaSalario = new ContaSalario();
-                                contas.add(contaSalario);
-                                System.out.println("Conta Salário criada."); */
-                                            break;
-                                        default:
-                                            System.out.println("Opção inválida. Tente novamente.");
-                                            break;
+                                                    System.out.println("Opção inválida! Digite um número de 1 a 5.");
+                                                    break;
+
+                                                    case 2:
+
+                                                        Contadebito guiDeb = new Contadebito();
+                                                        boolean next2 = true;
+                                                        while (next2) {
+                                                            System.out.println("Escolha a operação:");
+                                                            System.out.println("1. Cadastrar cliente");
+                                                            System.out.println("2. Buscar cliente");
+                                                            System.out.println("3. Atualizar cliente");
+                                                            System.out.println("4. Deletar cliente");
+                                                            System.out.println("0. Voltar ao menu principal");
+
+                                                            switch (opcao) {
+                                                                case 1:
+                                                                    //n deve ser fornecido pelo usuario arrumar dps
+                                                                    System.out.println("Digite o número do cliente:");
+                                                                    guiDeb.setNumero(scanner.next());
+                                                                    System.out.println("Digite o CPF do cliente:");
+                                                                    guiDeb.setCpfCnpj(scanner.next());
+                                                                    contaController.add(guiDeb);
+                                                                    break;
+                                                                case 2:
+                                                                    System.out.println("Digite o CPF do cliente que deseja buscar:");
+                                                                    guiDeb.setCpfCnpj(scanner.next());
+                                                                    contaController.get(guiDeb.getCpfCnpj());
+                                                                    break;
+                                                                case 3:
+                                                                    System.out.println("Digite o novo número do cliente:");
+                                                                    guiDeb.setNumero(scanner.next());
+                                                                    contaController.update(guiDeb);
+                                                                    break;
+                                                                case 4:
+                                                                    System.out.println("Você tem certeza que quer deletar sua conta");
+                                                                    if (scanner.next().equalsIgnoreCase("Sim")) {
+                                                                        contaController.delete(guiDeb);
+                                                                    } else break;
+                                                                case 0:
+                                                                    System.out.println("Saindo...");
+                                                                    next2 = false;
+                                                                    break;
+
+                                                                System.out.println("Opção inválida! Digite um número de 1 a 5.");
+                                                                break;
+                                                                case 3:
+                                                                    ContaPoupanca guiPou = new ContaPoupanca();
+
+                                                                    while (next2) {
+                                                                        System.out.println("Escolha a operação:");
+                                                                        System.out.println("1. Cadastrar cliente");
+                                                                        System.out.println("2. Buscar cliente");
+                                                                        System.out.println("3. Atualizar cliente");
+                                                                        System.out.println("4. Deletar cliente");
+                                                                        System.out.println("0. Voltar ao menu principal");
+
+                                                                        switch (opcao) {
+                                                                            case 1:
+                                                                                //n deve ser fornecido pelo usuario arrumar dps
+                                                                                System.out.println("Digite o número do cliente:");
+                                                                                guiPou.setNumero(scanner.next());
+                                                                                System.out.println("Digite o CPF do cliente:");
+                                                                                guiPou.setCpfCnpj(scanner.next());
+                                                                                contaController.add(guiPou);
+                                                                                break;
+                                                                            case 2:
+                                                                                System.out.println("Digite o CPF do cliente que deseja buscar:");
+                                                                                guiPou.setCpfCnpj(scanner.next());
+                                                                                contaController.get(guiPou.getCpfCnpj());
+                                                                                break;
+                                                                            case 3:
+                                                                                System.out.println("Digite o novo número do cliente:");
+                                                                                guiPou.setNumero(scanner.next());
+                                                                                contaController.update(guiPou);
+                                                                                break;
+                                                                            case 4:
+                                                                                System.out.println("Você tem certeza que quer deletar sua conta");
+                                                                                if (scanner.next().equalsIgnoreCase("Sim")) {
+                                                                                    contaController.delete(guiPou);
+                                                                                } else break;
+                                                                            case 0:
+                                                                                System.out.println("Saindo...");
+                                                                                next2 = false;
+                                                                                break;
+
+                                                                            System.out.println("Opção inválida! Digite um número de 1 a 5.");
+                                                                            break;
+                                                                            case 4:
+                                                                                ContaSalario contaSalario = new ContaSalario();
+
+                                                                                while (next2) {
+                                                                                    System.out.println("Escolha a operação:");
+                                                                                    System.out.println("1. Cadastrar cliente");
+                                                                                    System.out.println("2. Buscar cliente");
+                                                                                    System.out.println("3. Atualizar cliente");
+                                                                                    System.out.println("4. Deletar cliente");
+                                                                                    System.out.println("0. Voltar ao menu principal");
+
+                                                                                    switch (opcao) {
+                                                                                        case 1:
+                                                                                            //n deve ser fornecido pelo usuario arrumar dps
+                                                                                            System.out.println("Digite o número do cliente:");
+                                                                                            contaSalario.setNumero(scanner.next());
+                                                                                            System.out.println("Digite o CPF do cliente:");
+                                                                                            contaSalario.setCpfCnpj(scanner.next());
+                                                                                            contaController.add(guiPou);
+                                                                                            break;
+                                                                                        case 2:
+                                                                                            System.out.println("Digite o CPF do cliente que deseja buscar:");
+                                                                                            contaSalario.setCpfCnpj(scanner.next());
+                                                                                            contaController.get(contaSalario.getCpfCnpj());
+                                                                                            break;
+                                                                                        case 3:
+                                                                                            System.out.println("Digite o novo número do cliente:");
+                                                                                            contaSalario.setNumero(scanner.next());
+                                                                                            contaController.update(contaSalario);
+                                                                                            break;
+                                                                                        case 4:
+                                                                                            System.out.println("Você tem certeza que quer deletar sua conta");
+                                                                                            if (scanner.next().equalsIgnoreCase("Sim")) {
+                                                                                                contaController.delete(contaSalario);
+                                                                                            } else break;
+                                                                                        case 0:
+                                                                                            System.out.println("Saindo...");
+                                                                                            next2 = false;
+                                                                                            break;
+
+                                                                                        System.out.println("Opção inválida! Digite um número de 1 a 5.");
+                                                                                        break;
+                                                                                    }
+
+
+                                                                                }
+                                                                            default:
+                                                                                System.out.println("Opção inválida. Tente novamente.");
+                                                                                break;
+                                                                        }
+                                                                    }/*catch(InputMismatchException e){
+                                                                    e.printStackTrace();
+                                                                }*/
+
+                                                            }
+
+
+                                                        }
+                                                }
+                                            }
                                     }
-                            case 1:
-
-                              /*  ContaCredito contaCredito = new ContaCredito());
-                                ContaCredito.add(contaCredito);
-                                System.out.println("Conta Crédito criada."); */
-                                break;
-                            case 2:
-                               /*
-                                ContaDebito contaDebito = new ContaDebito();
-                                contas.add(contaDebito);
-                                System.out.println("Conta Débito criada."); */
-                                break;
-                            case 3:
-                               /*
-                                ContaPoupanca contaPoupanca = new ContaPoupanca();
-                                contas.add(contaPoupanca);
-                                System.out.println("Conta Poupança criada."); */
-                                break;
-                            case 4:
-                              /*
-                                ContaSalario contaSalario = new ContaSalario();
-                                contas.add(contaSalario);
-                                System.out.println("Conta Salário criada."); */
-                                break;
-                            default:
-                                System.out.println("Opção inválida. Tente novamente.");
-                                break;
+                            }
                         }
-                    }
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    break;
-            }
-            }catch (InputMismatchException e){
-                e.printStackTrace();
-            }
+                }
+            } finally {
 
+            }
         }
-
-        
     }
 }
+

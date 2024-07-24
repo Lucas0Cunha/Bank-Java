@@ -15,7 +15,7 @@ public class Cliente extends Pessoa {
 	}
 
 
-	//Ajuda n entendi esse conceito tao bem ainda
+
 	@Override
 	public String toString() {
 		return  "Tipo Cliente: " + this.tipoCliente +
