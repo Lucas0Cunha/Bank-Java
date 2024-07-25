@@ -16,13 +16,14 @@ public class ClienteServiceImpl implements ClienteService {
     private ClienteDAO clienteDAO = new ClienteDAOImpl(); 
     
     @Override
-    public void add(Cliente cliente) {
-    	
-        //if (cliente.getName().length()>5){
-            clienteDAO.add(cliente);
-       // }
-    }
+    public void add(Cliente cliente) throws IllegalArgumentException{
 
+        if (!clienteDAO.contem(cliente.getCpfCnpj())) {
+            clienteDAO.add(cliente);
+        } else {
+            throw new IllegalArgumentException("CPF ou CNPJ já cadastrado no sistema.");
+        }
+    }
 
     @Override
     public List<Cliente> getAll() {
@@ -36,9 +37,14 @@ public class ClienteServiceImpl implements ClienteService {
 
 
     @Override
-    public void delete(Cliente cliente) {
-    	clienteDAO.delete(cliente);
+    public void delete(Cliente cliente) throws IllegalArgumentException{
+        if (clienteDAO.contem(cliente.getCpfCnpj())) {
+            clienteDAO.delete(cliente);
+        } else {
+            throw new IllegalArgumentException("Cliente não encontrado para exclusão.");
+        }
     }
+
 
     @Override
     public boolean contem(String clientecontem) {
@@ -46,9 +52,14 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public boolean update(Cliente update) {
-    	return clienteDAO.update(update);
+    public boolean update(Cliente update) throws IllegalArgumentException{
+        if (clienteDAO.contem(update.getCpfCnpj())) {
+            return clienteDAO.update(update);
+        } else {
+            throw new IllegalArgumentException("Cliente não encontrado para atualização.");
+        }
+    }
     }
 
 
-}
+

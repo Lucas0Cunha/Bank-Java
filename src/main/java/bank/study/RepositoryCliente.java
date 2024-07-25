@@ -23,8 +23,8 @@ public class RepositoryCliente {
         System.out.println(clienteDAO.get("123").getName());
 
         ClienteDAO dataBase = new ClienteDAOImpl();
-        //TODO isso precisa funcionar como o anterior  // n sei se era essa a resolução esperada
-        System.out.println(dataBase.get("123").getName());
+
+        System.out.println(dataBase.get("456").getName());
     }
 
 

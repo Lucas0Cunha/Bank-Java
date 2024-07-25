@@ -17,7 +17,7 @@ public class ContaDAOImpl implements ContaDAO {
         totalDeContas++;
     }
 
-    //Alterar metodo para buscar o numero da conta
+
     @Override
     public Conta get(String numeroConta) {
 

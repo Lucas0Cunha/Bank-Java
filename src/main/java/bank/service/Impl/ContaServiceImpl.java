@@ -7,8 +7,6 @@ import bank.repository.impl.ContaDAOImpl;
 import bank.service.ClienteService;
 import bank.service.ContaService;
 
-// TODO fazer uma validacao para apenas permitir inserir contas que tenham clientes existentes
-
 public class ContaServiceImpl implements ContaService {
 
 	private ContaDAO contaDAO = new ContaDAOImpl();
@@ -21,6 +19,7 @@ public class ContaServiceImpl implements ContaService {
 	 */
 	@Override
 	//o uso do throws funciona como um aviso ao dev que esse metodo pode vir a lançar um erro, apenas isso.
+	//TODO pedir para explicar novamente a regra de negocio desse add
 	public void add(Conta conta) throws ClienteNaoExisteException {
 		if (clienteService.contem(conta.getCpfCnpj())) {
 			contaDAO.add(conta);
@@ -36,8 +35,13 @@ public class ContaServiceImpl implements ContaService {
 	}
 
 	@Override
-	public void update(Conta contaAtualizada) {
-		contaDAO.update(contaAtualizada);
+	public void update(Conta contaAtualizada) throws IllegalArgumentException{
+		if (contaDAO.contem(contaAtualizada.getCpfCnpj())) {
+			contaDAO.update(contaAtualizada);
+		} else {
+			throw new IllegalArgumentException("Cliente não encontrado para atualização.");
+		}
+
 	}
 
 	// private boolean posicaoOcupada(int posicao) {
@@ -48,8 +52,12 @@ public class ContaServiceImpl implements ContaService {
 	// [0] = Lucas, [1] = Rodrigo, [2] = null , totalDeClientes = 2
 
 	@Override
-	public void delete(Conta conta) {
-		contaDAO.delete(conta);
+	public void delete(Conta conta) throws IllegalArgumentException{
+		if (contaDAO.contem(conta.getCpfCnpj())) {
+			contaDAO.delete(conta);
+		} else {
+			throw new IllegalArgumentException("Cliente não encontrado para exclusão.");
+		}
 	}
 
 	@Override
