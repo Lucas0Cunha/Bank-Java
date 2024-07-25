@@ -12,7 +12,7 @@ public class ClienteGui {
         Scanner scanner = new Scanner(System.in);
         ContaController contaController = new ContaController();
         ContaPoupanca guiPou = new ContaPoupanca("3", "3");
-        int opcao = scanner.nextInt();
+        
 
 
         while (true) {
@@ -22,19 +22,19 @@ public class ClienteGui {
             System.out.println("3. Tipo de Conta");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
-
+            int opcao = scanner.nextInt();
             try {
 
 
-                int escolha = scanner.nextInt();
+                int escolha = 0;
 
-                switch (escolha) {
+                switch (opcao) {
                     case 0:
                         System.out.println("Encerrando o programa...");
                         return;
                     case 1:
                         ClienteController clienteController = new ClienteController();
-                        Cliente Gui = new Cliente();
+                        Cliente cliente1 = new Cliente();
                         boolean continuar = true;
                         while (continuar) {
                             System.out.println("Escolha a operação:");
@@ -44,30 +44,30 @@ public class ClienteGui {
                             System.out.println("4. Deletar cliente");
                             //melhorar o case 0
                             System.out.println("0. Voltar ao menu principal");
-
-                            switch (opcao) {
+                            escolha = scanner.nextInt();
+                            switch (escolha) {
                                 case 1:
 
                                     System.out.println("Digite o nome do cliente:");
-                                    Gui.setName(scanner.next());
+                                    cliente1.setName(scanner.next());
                                     System.out.println("Digite o CPF do cliente:");
-                                    Gui.setCpfCnpj(scanner.next());
-                                    clienteController.add(Gui);
+                                    cliente1.setCpfCnpj(scanner.next());
+                                    clienteController.add(cliente1);
                                     break;
                                 case 2:
                                     System.out.println("Digite o CPF do cliente que deseja buscar:");
-                                    Gui.setCpfCnpj(scanner.next());
-                                    clienteController.get(Gui.getCpfCnpj());
+                                    Cliente clienteGet = clienteController.get(scanner.next());
+                                    System.out.println("Nome: " + clienteGet.getName());
                                     break;
                                 case 3:
                                     System.out.println("Digite o novo nome do cliente:");
-                                    Gui.setName(scanner.next());
-                                    clienteController.update(Gui);
+                                    cliente1.setName(scanner.next());
+                                    clienteController.update(cliente1);
                                     break;
                                 case 4:
                                     System.out.println("Você tem certeza que quer deletar sua conta");
                                     if (scanner.next().equalsIgnoreCase("Sim")) {
-                                        clienteController.delete(Gui);
+                                        clienteController.delete(cliente1);
                                     } else break;
                                 case 0:
                                     System.out.println("Saindo...");
@@ -93,8 +93,8 @@ public class ClienteGui {
                             System.out.println("3. Atualizar funcionário");
                             System.out.println("4. Deletar funcionário");
                             System.out.println("0. Voltar ao menu principal");
-
-                            switch (opcao) {
+                            escolha = scanner.nextInt();
+                            switch (escolha) {
                                 case 1:
 
                                     System.out.println("Digite o nome do cliente:");

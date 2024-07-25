@@ -1,7 +1,11 @@
 package bank.service.Impl;
 
+import bank.dto.ContaRequestDTO;
 import bank.exceptions.ClienteNaoExisteException;
 import bank.models.Conta;
+import bank.models.ContaCredito;
+import bank.models.ContaPoupanca;
+import bank.models.ContaSalario;
 import bank.repository.ContaDAO;
 import bank.repository.impl.ContaDAOImpl;
 import bank.service.ClienteService;
@@ -68,6 +72,23 @@ public class ContaServiceImpl implements ContaService {
 	@Override
 	public Conta[] getAll() {
 		return contaDAO.getAll();
+	}
+
+	@Override
+	public void add(ContaRequestDTO contaDTO) {
+		Conta c = this.contaFactory(contaDTO);
+		this.add(c);
+	}
+
+	private Conta contaFactory(ContaRequestDTO contaDTO) {
+		if(contaDTO.saldo() > 200) {
+			return new ContaSalario(contaDTO.numeroConta(), contaDTO.cpfCnpj(), contaDTO.saldo());
+		}else if(contaDTO.saldo() > 100) {
+			return new ContaPoupanca(contaDTO.numeroConta(), contaDTO.cpfCnpj(), contaDTO.saldo());
+		}else if(contaDTO.saldo() == 0) {
+			return new ContaCredito(contaDTO.numeroConta(), contaDTO.cpfCnpj());
+		}
+		return null;
 	}
 
 }

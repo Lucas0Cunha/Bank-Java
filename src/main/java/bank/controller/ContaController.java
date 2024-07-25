@@ -1,5 +1,6 @@
 package bank.controller;
 
+import bank.dto.ContaRequestDTO;
 import bank.models.Conta;
 import bank.service.ContaService;
 import bank.service.Impl.ContaServiceImpl;
@@ -9,6 +10,10 @@ public class ContaController {
 
 	public void add(Conta contas) {
 		contaService.add(contas);
+	}
+	
+	public void add(ContaRequestDTO contaDTO) {
+		contaService.add(contaDTO);
 	}
 
 	public boolean contem(String numeroConta) {

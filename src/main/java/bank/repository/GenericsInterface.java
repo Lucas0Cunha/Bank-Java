@@ -1,5 +1,6 @@
 package bank.repository;
 
+//TODO  documentacao
 public interface GenericsInterface <T, I> {
 
         public boolean update(T t);
@@ -9,9 +10,9 @@ public interface GenericsInterface <T, I> {
         public T get(I i);
 
         /**
-         * Este metodo serve para adicionar um cliente
+         * Este metodo serve para adicionar um T
          * @throws RuntimeException
-         * @param </T>
+         * @param T
          */
         public void add(T t);
 

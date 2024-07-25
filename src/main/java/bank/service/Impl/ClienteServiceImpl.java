@@ -22,6 +22,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (!clienteDAO.contem(cliente.getCpfCnpj())) {
             clienteDAO.add(cliente);
         } else {
+        	//TODO
             throw new IllegalArgumentException(MSG_ID_CADASTRADO);
         }
     }
