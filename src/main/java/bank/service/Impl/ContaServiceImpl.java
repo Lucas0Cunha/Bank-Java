@@ -43,7 +43,7 @@ public class ContaServiceImpl implements ContaService {
 		if (contaDAO.contem(contaAtualizada.getCpfCnpj())) {
 			contaDAO.update(contaAtualizada);
 		} else {
-			throw new IllegalArgumentException("Cliente não encontrado para atualização.");
+			throw new IllegalArgumentException("Conta não encontrado para atualização.");
 		}
 
 	}
@@ -60,7 +60,7 @@ public class ContaServiceImpl implements ContaService {
 		if (contaDAO.contem(conta.getCpfCnpj())) {
 			contaDAO.delete(conta);
 		} else {
-			throw new IllegalArgumentException("Cliente não encontrado para exclusão.");
+			throw new IllegalArgumentException("Conta não encontrado para exclusão.");
 		}
 	}
 
