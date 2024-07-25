@@ -1,12 +1,12 @@
 package bank.controller;
 
 import bank.models.Cliente;
-import org.junit.jupiter.api.Test;
 
+import org.junit.Test;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.jupiter.api.Assertions.*;
 
-class ClienteControllerTest {
+
+public class ClienteControllerTest {
 
     @Test
     public void add() {
@@ -18,6 +18,35 @@ class ClienteControllerTest {
 
 
         assertNotNull(clienteController.get("12345"));
+
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void addClienteNaoExisteException() {
+
+        ClienteController clienteController = new ClienteController();
+        Cliente cliente = new Cliente();
+        cliente.setCpfCnpj("123456");
+        clienteController.add(cliente);
+        clienteController.add(cliente);
+    }
+
+
+    @Test
+    public void addClienteNaoExisteExceptionTryCatch() {
+
+        ClienteController clienteController = new ClienteController();
+        Cliente cliente = new Cliente();
+        cliente.setCpfCnpj("123456");
+        clienteController.add(cliente);
+
+        try {
+            clienteController.add(cliente);
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+
+
 
     }
 /*
