@@ -14,6 +14,7 @@ import bank.service.ClienteService;
  */
 public class ClienteServiceImpl implements ClienteService {
     private ClienteDAO clienteDAO = new ClienteDAOImpl(); 
+    private static final String MSG_ID_CADASTRADO = "CPF ou CNPJ já cadastrado no sistema.";
     
     @Override
     public void add(Cliente cliente) throws IllegalArgumentException{
@@ -21,7 +22,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (!clienteDAO.contem(cliente.getCpfCnpj())) {
             clienteDAO.add(cliente);
         } else {
-            throw new IllegalArgumentException("CPF ou CNPJ já cadastrado no sistema.");
+            throw new IllegalArgumentException(MSG_ID_CADASTRADO);
         }
     }
 
