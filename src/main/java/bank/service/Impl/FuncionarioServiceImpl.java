@@ -24,7 +24,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(contem)) {
             return funcionarioDAO.contem(contem);
         } else {
-            throw new IllegalArgumentException("Cliente não encontrado para atualização.");
+            throw new IllegalArgumentException("Funcionário não encontrado para atualização.");
         }
     }
 
@@ -39,7 +39,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(delete.getCpfCnpj())) {
             funcionarioDAO.delete(delete);
         } else {
-            throw new IllegalArgumentException("Cliente não encontrado para exclusão.");
+            throw new IllegalArgumentException("Funcionário não encontrado para exclusão.");
         }
     }
 
