@@ -5,6 +5,7 @@ import bank.models.Funcionario;
 import java.util.Map;
 
 public interface FuncionarioService {
+
     public void add(Funcionario funcionario);
     public boolean contem(String contem);
     public boolean update(Funcionario update);

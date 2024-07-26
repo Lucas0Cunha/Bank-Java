@@ -9,6 +9,11 @@ import java.util.Map;
 public class FuncionarioServiceImpl implements FuncionarioService {
     private FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
 
+    /**
+     * regra de negocio que verifica se não contem, daí adiciona, se não volta erro
+     * @param funcionario
+     * @throws IllegalArgumentException
+     */
     @Override
     public void add(Funcionario funcionario) throws IllegalArgumentException{
         if (!funcionarioDAO.contem(funcionario.getCpfCnpj())) {
@@ -18,7 +23,12 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         }
     }
 
-
+    /**
+     * Regra de negocio que verifica se contem, se sim, retorna o desejado, se não volta erro
+     * @param contem
+     * @return
+     * @throws IllegalArgumentException
+     */
     @Override
     public boolean contem(String contem)throws IllegalArgumentException{
         if (funcionarioDAO.contem(contem)) {
@@ -33,6 +43,11 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         return funcionarioDAO.update(update);
     }
 
+    /**
+     * Regra de negocio que verifica se o parametro dado existe, dai o deleta. Se não existir retorna erro
+     * @param delete
+     * @throws IllegalArgumentException
+     */
     @Override
     public void delete(Funcionario delete)  throws IllegalArgumentException{
         //NAO TENHO CTZ SE O USO É CORRETO, AQ ASSUMO Q GETCPFCNPJ É MINHA KEY

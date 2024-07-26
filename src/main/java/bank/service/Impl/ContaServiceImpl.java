@@ -16,11 +16,7 @@ public class ContaServiceImpl implements ContaService {
 	private ContaDAO contaDAO = new ContaDAOImpl();
 	private ClienteService clienteService = new ClienteServiceImpl();
 
-	/**
-	 *
-	 * @param conta
-	 * @throws ClienteNaoExisteException
-	 */
+
 	@Override
 	//o uso do throws funciona como um aviso ao dev que esse metodo pode vir a lançar um erro, apenas isso.
 	//TODO pedir para explicar novamente a regra de negocio desse add
