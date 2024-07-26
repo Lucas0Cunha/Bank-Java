@@ -16,10 +16,10 @@ import bank.service.ClienteService;
 public class ClienteServiceImpl implements ClienteService {
     private ClienteDAO clienteDAO = new ClienteDAOImpl();
 
-
+//javadocs p explicar a regra de negocio
     @Override
-    public void add(Cliente cliente) throws IllegalArgumentException {
-
+    public void add(Cliente cliente) throws ClienteRegraDeNegocio {
+//add esta com descrição de generics interface
         if (!clienteDAO.contem(cliente.getCpfCnpj())) {
             clienteDAO.add(cliente);
         } else {
@@ -40,7 +40,7 @@ public class ClienteServiceImpl implements ClienteService {
 
 
     @Override
-    public void delete(Cliente cliente) throws IllegalArgumentException {
+    public void delete(Cliente cliente) throws ClienteRegraDeNegocio {
         if (clienteDAO.contem(cliente.getCpfCnpj())) {
             clienteDAO.delete(cliente);
         } else {
@@ -59,7 +59,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public boolean update(Cliente update) throws IllegalArgumentException {
+    public boolean update(Cliente update) throws ClienteRegraDeNegocio {
         if (clienteDAO.contem(update.getCpfCnpj())) {
             return clienteDAO.update(update);
         } else {

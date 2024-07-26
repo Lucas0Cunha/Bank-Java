@@ -19,7 +19,7 @@ public class ContaServiceImpl implements ContaService {
 
 	@Override
 	//o uso do throws funciona como um aviso ao dev que esse metodo pode vir a lançar um erro, apenas isso.
-	//TODO pedir para explicar novamente a regra de negocio desse add
+	
 	public void add(Conta conta) throws ClienteNaoExisteException {
 		if (clienteService.contem(conta.getCpfCnpj())) {
 			contaDAO.add(conta);

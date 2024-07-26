@@ -1,5 +1,6 @@
 package bank.service.Impl;
 
+import bank.exceptions.ClienteRegraDeNegocio;
 import bank.models.Funcionario;
 import bank.repository.FuncionarioDAO;
 import bank.repository.impl.FuncionarioDAOImpl;
@@ -15,7 +16,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
      * @throws IllegalArgumentException
      */
     @Override
-    public void add(Funcionario funcionario) throws IllegalArgumentException{
+    public void add(Funcionario funcionario) throws ClienteRegraDeNegocio {
         if (!funcionarioDAO.contem(funcionario.getCpfCnpj())) {
             funcionarioDAO.add(funcionario);
         } else {
@@ -30,7 +31,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
      * @throws IllegalArgumentException
      */
     @Override
-    public boolean contem(String contem)throws IllegalArgumentException{
+    public boolean contem(String contem)throws ClienteRegraDeNegocio{
         if (funcionarioDAO.contem(contem)) {
             return funcionarioDAO.contem(contem);
         } else {
@@ -49,7 +50,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
      * @throws IllegalArgumentException
      */
     @Override
-    public void delete(Funcionario delete)  throws IllegalArgumentException{
+    public void delete(Funcionario delete)  throws ClienteRegraDeNegocio{
         //NAO TENHO CTZ SE O USO É CORRETO, AQ ASSUMO Q GETCPFCNPJ É MINHA KEY
         if (funcionarioDAO.contem(delete.getCpfCnpj())) {
             funcionarioDAO.delete(delete);
