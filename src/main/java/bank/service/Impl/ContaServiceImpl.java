@@ -70,12 +70,16 @@ public class ContaServiceImpl implements ContaService {
 		return contaDAO.getAll();
 	}
 
+
+	//metodo de add para inclusao do factory
+	// TODO revisar toda essa parte
 	@Override
 	public void add(ContaRequestDTO contaDTO) {
 		Conta c = this.contaFactory(contaDTO);
 		this.add(c);
 	}
 
+	//Factory dos diferentes objetos retornaveis
 	private Conta contaFactory(ContaRequestDTO contaDTO) {
 		if(contaDTO.saldo() > 200) {
 			return new ContaSalario(contaDTO.numeroConta(), contaDTO.cpfCnpj(), contaDTO.saldo());

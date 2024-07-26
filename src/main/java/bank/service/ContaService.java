@@ -5,6 +5,7 @@ import bank.models.Conta;
 
 public interface ContaService {
     public void add(Conta contas);
+    //Metodo precisa ser adicionado ao service
     public void add(ContaRequestDTO contaDTO);
     public boolean contem(String numeroConta);
     public void update(Conta contaAtualizada);
