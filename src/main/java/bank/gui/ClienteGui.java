@@ -12,8 +12,23 @@ public class ClienteGui {
         Scanner scanner = new Scanner(System.in);
         ContaController contaController = new ContaController();
         ContaPoupanca guiPou = new ContaPoupanca("3", "3");
-        
 
+        Thread tarefa = new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(10000); // Espera 10 segundos
+                    System.out.println("Verificando status... Status: Online");
+
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.out.println("A tarefa de fundo foi interrompida.");
+                }
+            }
+        });
+
+        // Inicia a thread
+        tarefa.setDaemon(true); // A thread será encerrada quando a aplicação principal for encerrada
+        tarefa.start();
 
         while (true) {
             System.out.println("\n### Menu ###");
