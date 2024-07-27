@@ -17,9 +17,14 @@ public class ContaServiceImpl implements ContaService {
 	private ClienteService clienteService = new ClienteServiceImpl();
 
 
+	/**
+	 * Este metodo serve para adicionar algum objeto criado.
+	 * Regra de negocio: Apenas permite dar um add em objeto conta se ele existir,
+	 * @param conta
+	 * @throws ClienteNaoExisteException
+	 */
 	@Override
 	//o uso do throws funciona como um aviso ao dev que esse metodo pode vir a lançar um erro, apenas isso.
-	
 	public void add(Conta conta) throws ClienteNaoExisteException {
 		if (clienteService.contem(conta.getCpfCnpj())) {
 			contaDAO.add(conta);
@@ -29,11 +34,22 @@ public class ContaServiceImpl implements ContaService {
 		}
 	}
 
+	/**
+	 * Este metodo serve para puxar as informações do objeto
+	 * @param numeroConta
+	 * @return
+	 */
 	@Override
 	public Conta get(String numeroConta) {
 		return contaDAO.get(numeroConta);
 	}
 
+	/**
+	 * Este metodo serve para atualizar algum dado já existente
+	 * Regra de negocio: Apenas permite que se atualize se o objeto existir atraves do uso do metodo contem
+	 * @param contaAtualizada
+	 * @throws IllegalArgumentException
+	 */
 	@Override
 	public void update(Conta contaAtualizada) throws IllegalArgumentException{
 		if (contaDAO.contem(contaAtualizada.getCpfCnpj())) {
@@ -51,6 +67,12 @@ public class ContaServiceImpl implements ContaService {
 	// [0] = Lucas, [1] = Antonio, [2] = Rodrigo, [3] = null, totalDeClientes = 3
 	// [0] = Lucas, [1] = Rodrigo, [2] = null , totalDeClientes = 2
 
+	/**
+	 * Este metodo serve para deletar algum dado ja inserido
+	 * Metodo delete que possui regra de negocio para permitir o delete apenas se o objeto existir atraves do uso do contem
+	 * @param conta
+	 * @throws IllegalArgumentException
+	 */
 	@Override
 	public void delete(Conta conta) throws IllegalArgumentException{
 		if (contaDAO.contem(conta.getCpfCnpj())) {
@@ -60,11 +82,20 @@ public class ContaServiceImpl implements ContaService {
 		}
 	}
 
+	/**
+	 * Este metodo verifica se o valor desejado por parametro existe.
+	 * @param numeroConta
+	 * @return
+	 */
 	@Override
 	public boolean contem(String numeroConta) {
 		return contaDAO.contem(numeroConta);
 	}
 
+	/**
+	 * Metodo que puxa todas informações da lista.
+	 * @return
+	 */
 	@Override
 	public Conta[] getAll() {
 		return contaDAO.getAll();
@@ -80,6 +111,12 @@ public class ContaServiceImpl implements ContaService {
 	}
 
 	//Factory dos diferentes objetos retornaveis
+
+	/**
+	 * metodo Factory para devolver diferentes objetos atraves de um contaDTO
+	 * @param contaDTO
+	 * @return
+	 */
 	private Conta contaFactory(ContaRequestDTO contaDTO) {
 		if(contaDTO.saldo() > 200) {
 			return new ContaSalario(contaDTO.numeroConta(), contaDTO.cpfCnpj(), contaDTO.saldo());

@@ -39,6 +39,12 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         }
     }
 
+    /**
+     * Este metodo serve para atualizar algum dado já existente
+     * Regra de negocio: Apenas permite que se atualize se o objeto existir atraves do uso do metodo contem
+     * @param update
+     * @throws IllegalArgumentException
+     */
     @Override
     public boolean update(Funcionario update) {
         return funcionarioDAO.update(update);
@@ -59,11 +65,20 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         }
     }
 
+    /**
+     * Este metodo serve para puxar as informações do objeto
+     * @param funcionario
+     * @return
+     */
     @Override
     public Funcionario get(String funcionario) {
         return funcionarioDAO.get(funcionario);
     }
 
+    /**
+     * Metodo que puxa todas informações da lista.
+     * @return
+     */
     @Override
     public Map<String, Funcionario> getAll() {
         return funcionarioDAO.getAll();

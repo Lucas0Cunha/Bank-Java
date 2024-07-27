@@ -12,6 +12,8 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 	//ele vai com cada dado inserido por cada um dos distintos objetos que a utiliza.
 	private static Map<String, Funcionario> funcionarios = new HashMap<>();
 
+
+
 	@Override
 	public void add(Funcionario funcionario) {
 		funcionarios.put(funcionario.getCpfCnpj(), funcionario);
