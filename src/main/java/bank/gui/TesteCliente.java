@@ -20,6 +20,7 @@ public class TesteCliente {
         clienteController.add(cliente);
 
         ContaController contaController = new ContaController();
+        //TODO PERGUNTAR PQ CAIU NO CATCH
         try {
             contaController.add(conta1);
             contaController.add(conta2);

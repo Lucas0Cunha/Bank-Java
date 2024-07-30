@@ -1,5 +1,6 @@
 package bank.repository.impl;
 
+import bank.constantstexts.Constants;
 import bank.models.Conta;
 import bank.repository.ContaDAO;
 
@@ -66,7 +67,7 @@ public class ContaDAOImpl implements ContaDAO {
                 }
             }
         }else {
-            System.out.println("Não é possível utilizar o método (contem) porque o cliente é null");
+            System.out.println(Constants.inexiste);
         }
 
         return false;

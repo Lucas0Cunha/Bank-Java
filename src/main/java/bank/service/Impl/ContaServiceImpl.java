@@ -1,5 +1,6 @@
 package bank.service.Impl;
 
+import bank.constantstexts.Constants;
 import bank.dto.ContaRequestDTO;
 import bank.exceptions.ClienteNaoExisteException;
 import bank.models.Conta;
@@ -55,7 +56,7 @@ public class ContaServiceImpl implements ContaService {
 		if (contaDAO.contem(contaAtualizada.getCpfCnpj())) {
 			contaDAO.update(contaAtualizada);
 		} else {
-			throw new IllegalArgumentException("Conta não encontrado para atualização.");
+			throw new IllegalArgumentException(Constants.notfound);
 		}
 
 	}
@@ -78,7 +79,7 @@ public class ContaServiceImpl implements ContaService {
 		if (contaDAO.contem(conta.getCpfCnpj())) {
 			contaDAO.delete(conta);
 		} else {
-			throw new IllegalArgumentException("Conta não encontrado para exclusão.");
+			throw new IllegalArgumentException(Constants.notfound);
 		}
 	}
 

@@ -1,5 +1,7 @@
 package bank.repository.impl;
 
+import bank.constantstexts.Constants;
+import bank.exceptions.ClienteNaoExisteException;
 import bank.models.Cliente;
 import bank.repository.ClienteDAO;
 
@@ -21,7 +23,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 				return cliente;
 			}
 		}
-		return null;
+		throw new ClienteNaoExisteException("Cliente com CPF/CNPJ " + cpfCnpj + " não encontrado.");
 	}
 
 	@Override
@@ -39,6 +41,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 		for (Cliente cliente : dataBase) {
 			if (cliente.getCpfCnpj().equals(cpfCnpj)) {
 				return true;
+			}else {
+				System.out.println(Constants.inexiste);
 			}
 		}
 		return false;

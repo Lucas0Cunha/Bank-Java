@@ -1,5 +1,6 @@
 package bank.repository.impl;
 
+import bank.constantstexts.Constants;
 import bank.models.Funcionario;
 import bank.repository.FuncionarioDAO;
 
@@ -24,6 +25,8 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 		for (Funcionario funcionario : funcionarios.values()) {
 			if (funcionario.getCpfCnpj().equals(contem)) {
 				return true;
+			}else {
+				System.out.println(Constants.inexiste);
 			}
 		}
 		return false;

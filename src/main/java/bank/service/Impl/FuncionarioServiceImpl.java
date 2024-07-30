@@ -1,5 +1,6 @@
 package bank.service.Impl;
 
+import bank.constantstexts.Constants;
 import bank.exceptions.ClienteRegraDeNegocio;
 import bank.models.Funcionario;
 import bank.repository.FuncionarioDAO;
@@ -20,7 +21,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (!funcionarioDAO.contem(funcionario.getCpfCnpj())) {
             funcionarioDAO.add(funcionario);
         } else {
-            throw new IllegalArgumentException("CPF ou CNPJ já cadastrado no sistema.");
+            throw new IllegalArgumentException(Constants.existente);
         }
     }
 
@@ -35,7 +36,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(contem)) {
             return funcionarioDAO.contem(contem);
         } else {
-            throw new IllegalArgumentException("Funcionário não encontrado para atualização.");
+            throw new IllegalArgumentException(Constants.notfound);
         }
     }
 
@@ -61,7 +62,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(delete.getCpfCnpj())) {
             funcionarioDAO.delete(delete);
         } else {
-            throw new IllegalArgumentException("Funcionário não encontrado para exclusão.");
+            throw new IllegalArgumentException(Constants.notfound);
         }
     }
 
