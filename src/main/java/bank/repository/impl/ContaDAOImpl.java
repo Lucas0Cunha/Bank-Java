@@ -66,8 +66,6 @@ public class ContaDAOImpl implements ContaDAO {
                     return true;
                 }
             }
-        }else {
-            System.out.println(Constants.inexiste);
         }
 
         return false;

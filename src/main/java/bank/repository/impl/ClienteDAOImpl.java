@@ -41,8 +41,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 		for (Cliente cliente : dataBase) {
 			if (cliente.getCpfCnpj().equals(cpfCnpj)) {
 				return true;
-			}else {
-				System.out.println(Constants.inexiste);
 			}
 		}
 		return false;
