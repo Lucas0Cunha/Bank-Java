@@ -2,6 +2,7 @@ package bank.service.Impl;
 
 import java.util.List;
 
+import bank.exceptions.ClienteJaExisteException;
 import bank.exceptions.ClienteRegraDeNegocio;
 import bank.models.Cliente;
 import bank.repository.ClienteDAO;
@@ -31,7 +32,7 @@ public class ClienteServiceImpl implements ClienteService {
             clienteDAO.add(cliente);
         } else {
 
-            throw new ClienteRegraDeNegocio("CPF ou CNPJ já cadastrado no sistema para este" + cliente);
+            throw new ClienteJaExisteException("CPF ou CNPJ já cadastrado no sistema para este" + cliente);
         }
     }
 

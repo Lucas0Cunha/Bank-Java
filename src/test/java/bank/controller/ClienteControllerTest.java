@@ -2,20 +2,20 @@ package bank.controller;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import static org.junit.Assert.assertTrue;
+
+
+import bank.exceptions.ClienteJaExisteException;
 import org.junit.Test;
 
-import bank.exceptions.ClienteNaoExisteException;
+
 import bank.exceptions.ClienteRegraDeNegocio;
 import bank.models.Cliente;
 
 import java.util.List;
 
-//CORRECAO TOTAL OU METODO POR METODO
-//DUVIDA, ALGUMAS COISAS ESTOU TRATANDO AQUI, DEVO JOGAR NOS METODOS PARA BLINDA-LOS...
+
 public class ClienteControllerTest {
 
     @Test
@@ -29,8 +29,8 @@ public class ClienteControllerTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void addClienteNaoExisteException() {
+    @Test(expected = ClienteJaExisteException.class)
+    public void addClienteJaExisteException() {
 
         ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
@@ -86,6 +86,9 @@ public class ClienteControllerTest {
     @Test
     public void contem() {
         ClienteController clienteController = new ClienteController();
+        Cliente cliente = new Cliente();
+        cliente.setCpfCnpj("123456");
+        clienteController.add(cliente);
         assertTrue(clienteController.contem("123456"));
     }
 
@@ -132,3 +135,4 @@ public class ClienteControllerTest {
     }
 }
 
+//TODO ME AJUDAR COM O ASSERT EQUALS DE INFORMAÇÕES
