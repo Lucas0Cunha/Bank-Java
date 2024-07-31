@@ -1,11 +1,19 @@
 package bank.controller;
 
-import bank.exceptions.ClienteNaoExisteException;
-import bank.models.Cliente;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
+import bank.exceptions.ClienteNaoExisteException;
+import bank.exceptions.ClienteRegraDeNegocio;
+import bank.models.Cliente;
+
+import java.util.List;
+
 //CORRECAO TOTAL OU METODO POR METODO
 //DUVIDA, ALGUMAS COISAS ESTOU TRATANDO AQUI, DEVO JOGAR NOS METODOS PARA BLINDA-LOS...
 public class ClienteControllerTest {
@@ -17,8 +25,6 @@ public class ClienteControllerTest {
         Cliente cliente = new Cliente();
         cliente.setCpfCnpj("12345");
         clienteController.add(cliente);
-
-
         assertNotNull(clienteController.get("12345"));
 
     }
@@ -35,100 +41,58 @@ public class ClienteControllerTest {
 
 
     @Test(expected = IllegalArgumentException.class)
-    public void addClienteNaoExisteExceptionTryCatch() {
+    public void addClienteJaExisteExceptionTryCatch() {
 
         ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
         cliente.setCpfCnpj("123456");
         clienteController.add(cliente);
         clienteController.add(cliente);
-        }
+    }
 
+    //TODO
     @Test
     public void getAll() {
         ClienteController clienteController = new ClienteController();
-
-        Cliente cliente = new Cliente();
-      /*  cliente.setCpfCnpj("123");
-        cliente.setName("Lucas");
-        clienteController.add(cliente);*/
-        //ME DEVOLVE O TIPO DE CLIENTE NULL COMO RESOLVER
-        System.out.println(clienteController.getAll());
-    }
-
-    //NAO PRECISO COLOCAR UM EXPECTED PQ...
-    @Test
-    public void GetAllNaoExisteClientes() {
-        ClienteController clienteController = new ClienteController();
-        Cliente cliente = new Cliente();
-        System.out.println(clienteController.getAll());
-    }
-
-
-
-// COMO FAZER SE O Q DESEJA SER DELETADO NAO EXISTE
-    /*
-    @Test (expected = .class)
-    public void deleteClienteNaoExiste() {
-        ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
         cliente.setCpfCnpj("123456");
         clienteController.add(cliente);
-        clienteController.get("123456");
-        clienteController.delete(cliente2);
+        List<?> result = clienteController.getAll();
+        assertFalse(result.isEmpty());
+    }
 
-
-    }*/
-
-
+    //TODO feito
     @Test
     public void getNaoExisteCliente() {
         ClienteController clienteController = new ClienteController();
-        try {
-            clienteController.get("123456");
-        } catch (ClienteNaoExisteException e) {
-            System.out.println(e.getMessage());
-        }
+        List<?> result = clienteController.getAll();
+        assertTrue(result.isEmpty());
 
     }
 
+    //TODO feito
     @Test
     public void get() {
         ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
-      /*  cliente.setCpfCnpj("123456");
+        cliente.setCpfCnpj("123456");
         cliente.setName("Lucas");
-        clienteController.add(cliente);*/
-        try {
-            System.out.println(clienteController.get("123456"));
-        } catch (ClienteNaoExisteException e) {
-            System.out.println(e.getMessage());
-        }
+        clienteController.add(cliente);
+        clienteController.get("123456");
+
 
     }
 
     @Test
     public void contem() {
         ClienteController clienteController = new ClienteController();
-        Cliente cliente = new Cliente();
-      /*  cliente.setCpfCnpj("123456");
-        cliente.setName("Lucas");
-        clienteController.add(cliente);*/
-        System.out.println(clienteController.contem("123456"));
+        assertTrue(clienteController.contem("123456"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test (expected = ClienteRegraDeNegocio.class)
     public void Naocontem() {
         ClienteController clienteController = new ClienteController();
-        Cliente cliente = new Cliente();
-       /* cliente.setCpfCnpj("123456");
-        cliente.setName("Lucas");
-        clienteController.add(cliente);*/
-        try {
-            clienteController.contem("1234567");
-        } catch (ClienteNaoExisteException e) {
-            System.out.println(e.getMessage());
-        }
+        clienteController.contem("1234567");
     }
 
 
@@ -136,39 +100,35 @@ public class ClienteControllerTest {
     public void update() {
         ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
-        cliente.setCpfCnpj("123456");
+        cliente.setCpfCnpj("123456789");
         cliente.setName("Lucas");
-        //clienteController.add(cliente);
-        cliente.setName("Roger");
-        clienteController.update(cliente);
-        System.out.println(clienteController.get("123456"));
+
+        clienteController.add(cliente);
+
+        Cliente clienteGet = clienteController.get("123456789");
+        clienteGet.setName("Roger");
+        assertTrue(clienteController.update(clienteGet));
     }
 
-    @Test
+    //TODO FIQUEI CONFUSO DO PQ É REGRA DE NEGOCIO PQ ELE N DEIXA USAR O ASSETNULL E FICA DE OLHO NO NOME
+    @Test(expected = ClienteRegraDeNegocio.class)
     public void delete() {
         ClienteController clienteController = new ClienteController();
-        Cliente cliente = new Cliente();
-        cliente.setCpfCnpj("123456");
-
-        clienteController.get("123456");
-        clienteController.delete(cliente);
-
+        Cliente c = new Cliente();
+        c.setName("Lucas");
+        c.setCpfCnpj("123456");
+        clienteController.delete(c);
+        Cliente cGet = clienteController.get("123456");
+        //assertNull(cGet);
     }
 
-    /*mesma coisa do delete
-    @Test
+    @Test(expected = ClienteRegraDeNegocio.class)
     public void updateNaoExisteCliente() {
         ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
-        cliente.setCpfCnpj("123456");
+        cliente.setCpfCnpj("12345679454165465");
         cliente.setName("Lucas");
-        clienteController.add(cliente);
-        cliente.setName("Roger");
-
-        try {
-            clienteController.update(cliente1);
-        }catch ()
-        System.out.println(clienteController.get("123456"));
-    } */
+        clienteController.update(cliente);
+    }
 }
 
