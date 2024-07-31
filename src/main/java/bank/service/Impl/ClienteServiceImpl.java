@@ -81,7 +81,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (clienteDAO.contem(clientecontem)) {
             return clienteDAO.contem(clientecontem);
         } else {
-            throw new ClienteRegraDeNegocio("Cliente" + clientecontem + " não encontrado para atualização.");
+            return false;//TODO throw new ClienteRegraDeNegocio("Cliente " + clientecontem + " não encontrado para atualização.");
         }
     }
 

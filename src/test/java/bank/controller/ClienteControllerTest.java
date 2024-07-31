@@ -1,19 +1,18 @@
 package bank.controller;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-
-import static org.junit.Assert.assertTrue;
-
 
 import bank.exceptions.ClienteJaExisteException;
+import bank.exceptions.ClienteNaoExisteException;
 import org.junit.Test;
+
 
 
 import bank.exceptions.ClienteRegraDeNegocio;
 import bank.models.Cliente;
 
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 
 public class ClienteControllerTest {
@@ -23,10 +22,14 @@ public class ClienteControllerTest {
 
         ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
+        cliente.setName("Lucas");
         cliente.setCpfCnpj("12345");
         clienteController.add(cliente);
-        assertNotNull(clienteController.get("12345"));
-
+       // assertNotNull(clienteController.get("12345"));
+        Cliente clienteGet = clienteController.get("12345");
+        assertNotNull(clienteGet);
+        assertEquals(clienteGet.getName(),"Lucas");
+        assertEquals(clienteGet.getCpfCnpj(),"12345");
     }
 
     @Test(expected = ClienteJaExisteException.class)
@@ -40,7 +43,7 @@ public class ClienteControllerTest {
     }
 
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ClienteJaExisteException.class)
     public void addClienteJaExisteExceptionTryCatch() {
 
         ClienteController clienteController = new ClienteController();
@@ -54,6 +57,7 @@ public class ClienteControllerTest {
     @Test
     public void getAll() {
         ClienteController clienteController = new ClienteController();
+
         Cliente cliente = new Cliente();
         cliente.setCpfCnpj("123456");
         clienteController.add(cliente);
@@ -62,6 +66,8 @@ public class ClienteControllerTest {
     }
 
     //TODO feito
+
+
     @Test
     public void getNaoExisteCliente() {
         ClienteController clienteController = new ClienteController();
@@ -70,15 +76,19 @@ public class ClienteControllerTest {
 
     }
 
+
     //TODO feito
+
     @Test
     public void get() {
         ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
         cliente.setCpfCnpj("123456");
         cliente.setName("Lucas");
+
         clienteController.add(cliente);
         clienteController.get("123456");
+
 
 
     }
@@ -86,16 +96,17 @@ public class ClienteControllerTest {
     @Test
     public void contem() {
         ClienteController clienteController = new ClienteController();
+
         Cliente cliente = new Cliente();
         cliente.setCpfCnpj("123456");
         clienteController.add(cliente);
         assertTrue(clienteController.contem("123456"));
     }
 
-    @Test (expected = ClienteRegraDeNegocio.class)
+    @Test
     public void Naocontem() {
         ClienteController clienteController = new ClienteController();
-        clienteController.contem("1234567");
+        assertFalse(clienteController.contem("123456"));
     }
 
 
@@ -107,32 +118,44 @@ public class ClienteControllerTest {
         cliente.setName("Lucas");
 
         clienteController.add(cliente);
-
         Cliente clienteGet = clienteController.get("123456789");
         clienteGet.setName("Roger");
         assertTrue(clienteController.update(clienteGet));
     }
 
-    //TODO FIQUEI CONFUSO DO PQ É REGRA DE NEGOCIO PQ ELE N DEIXA USAR O ASSETNULL E FICA DE OLHO NO NOME
-    @Test(expected = ClienteRegraDeNegocio.class)
+    //TODO FIQUEI CONFUSO DO PQ É REGRA DE NEGOCIO PQ ELE N DEIXA USAR O ASSERTNULL E FICA DE OLHO NO NOME
+    @Test (expected = ClienteNaoExisteException.class)
     public void delete() {
         ClienteController clienteController = new ClienteController();
+
         Cliente c = new Cliente();
         c.setName("Lucas");
         c.setCpfCnpj("123456");
+        clienteController.add(c);
         clienteController.delete(c);
-        Cliente cGet = clienteController.get("123456");
-        //assertNull(cGet);
+        clienteController.get(c.getCpfCnpj());
+
+       /* Cliente cGet=null;
+        try {
+            cGet = clienteController.get("123456");
+        }catch (ClienteNaoExisteException e){
+            assertNull(cGet);
+        } */
+
+
+
     }
 
     @Test(expected = ClienteRegraDeNegocio.class)
     public void updateNaoExisteCliente() {
         ClienteController clienteController = new ClienteController();
+
         Cliente cliente = new Cliente();
         cliente.setCpfCnpj("12345679454165465");
         cliente.setName("Lucas");
         clienteController.update(cliente);
     }
+
 }
 
 //TODO ME AJUDAR COM O ASSERT EQUALS DE INFORMAÇÕES

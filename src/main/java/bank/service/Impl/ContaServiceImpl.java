@@ -56,7 +56,7 @@ public class ContaServiceImpl implements ContaService {
 		if (contaDAO.contem(contaAtualizada.getCpfCnpj())) {
 			contaDAO.update(contaAtualizada);
 		} else {
-			throw new IllegalArgumentException(Constants.notfound);
+			throw new IllegalArgumentException(Constants.NOT_FOUND);
 		}
 
 	}
@@ -79,7 +79,7 @@ public class ContaServiceImpl implements ContaService {
 		if (contaDAO.contem(conta.getCpfCnpj())) {
 			contaDAO.delete(conta);
 		} else {
-			throw new IllegalArgumentException(Constants.notfound);
+			throw new IllegalArgumentException(Constants.NOT_FOUND);
 		}
 	}
 

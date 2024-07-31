@@ -36,7 +36,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(contem)) {
             return funcionarioDAO.contem(contem);
         } else {
-            throw new IllegalArgumentException(Constants.notfound);
+            throw new IllegalArgumentException(Constants.NOT_FOUND);
         }
     }
 
@@ -62,7 +62,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(delete.getCpfCnpj())) {
             funcionarioDAO.delete(delete);
         } else {
-            throw new IllegalArgumentException(Constants.notfound);
+            throw new IllegalArgumentException(Constants.NOT_FOUND);
         }
     }
 
