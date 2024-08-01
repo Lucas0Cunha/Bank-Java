@@ -14,6 +14,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	@Override
 	public void add(Cliente cliente) {
 		dataBase.add(cliente);
+		System.out.println("Cliente adicionado com sucesso!");
 	}
 
 	@Override
@@ -53,8 +54,9 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 			if (currentItem.getCpfCnpj().equals(update.getCpfCnpj())) {
 				dataBase.set(i, update);
+				System.out.println("Cliente atualizado com sucesso!");
 				return true;
-			}
+            }
 		}
 		return false;
 	}

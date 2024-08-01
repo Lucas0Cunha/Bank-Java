@@ -96,7 +96,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (clienteDAO.contem(update.getCpfCnpj())) {
             return clienteDAO.update(update);
         } else {
-            throw new ClienteRegraDeNegocio("Cliente" + update + "não encontrado para atualização.");
+            throw new ClienteRegraDeNegocio("Cliente não encontrado para atualização.");
         }
     }
 

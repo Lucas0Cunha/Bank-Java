@@ -48,12 +48,12 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 	@Override
 	public Funcionario get(String funcionario) {
-		return this.funcionarios.get(funcionario);
+		return funcionarios.get(funcionario);
 	}
 
 	@Override
 	public Map<String, Funcionario> getAll() {
-		return this.funcionarios;
+		return funcionarios;
 	}
 
 }

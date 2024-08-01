@@ -11,9 +11,9 @@ public class ClienteGui {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ContaController contaController = new ContaController();
-        ContaPoupanca guiPou = new ContaPoupanca("3", "3");
+        ContaPoupanca ? = new ContaPoupanca("3", "3");
 
-        Thread tarefa = new Thread(() -> {
+        /*Thread tarefa = new Thread(() -> {
             while (true) {
                 try {
                     Thread.sleep(10000); // Espera 10 segundos
@@ -28,7 +28,7 @@ public class ClienteGui {
 
         // Inicia a thread
         tarefa.setDaemon(true); // A thread será encerrada quando a aplicação principal for encerrada
-        tarefa.start();
+        tarefa.start(); */
 
         while (true) {
             System.out.println("\n### Menu ###");
@@ -49,7 +49,7 @@ public class ClienteGui {
                         return;
                     case 1:
                         ClienteController clienteController = new ClienteController();
-                        Cliente cliente1 = new Cliente();
+                        Cliente ? = new Cliente();
                         boolean continuar = true;
                         while (continuar) {
                             System.out.println("Escolha a operação:");
@@ -64,10 +64,10 @@ public class ClienteGui {
                                 case 1:
 
                                     System.out.println("Digite o nome do cliente:");
-                                    cliente1.setName(scanner.next());
+                                    ?.setName(scanner.next());
                                     System.out.println("Digite o CPF do cliente:");
-                                    cliente1.setCpfCnpj(scanner.next());
-                                    clienteController.add(cliente1);
+                                    ?.setCpfCnpj(scanner.next());
+                                    clienteController.add(?);
                                     break;
                                 case 2:
                                     System.out.println("Digite o CPF do cliente que deseja buscar:");
@@ -76,13 +76,13 @@ public class ClienteGui {
                                     break;
                                 case 3:
                                     System.out.println("Digite o novo nome do cliente:");
-                                    cliente1.setName(scanner.next());
-                                    clienteController.update(cliente1);
+                                    ?.setName(scanner.next());
+                                    clienteController.update(?);
                                     break;
                                 case 4:
                                     System.out.println("Você tem certeza que quer deletar sua conta");
                                     if (scanner.next().equalsIgnoreCase("Sim")) {
-                                        clienteController.delete(cliente1);
+                                        clienteController.delete(?);
                                     } else break;
                                 case 0:
                                     System.out.println("Saindo...");
@@ -93,8 +93,6 @@ public class ClienteGui {
                                     break;
                             }
                         }
-                        scanner.close();
-
                         break;
                     case 2:
 
@@ -116,22 +114,22 @@ public class ClienteGui {
                                     Gui1.setName(scanner.next());
                                     System.out.println("Digite o CPF do cliente:");
                                     Gui1.setCpfCnpj(scanner.next());
-                                    funcionarioController.add(Gui1);
+                                    funcionarioController.add(?);
                                     break;
                                 case 2:
                                     System.out.println("Digite o CPF do cliente que deseja buscar:");
                                     Gui1.setCpfCnpj(scanner.next());
-                                    funcionarioController.get(Gui1.getCpfCnpj());
+                                    funcionarioController.get(?.getCpfCnpj());
                                     break;
                                 case 3:
                                     System.out.println("Digite o novo nome do cliente:");
                                     Gui1.setName(scanner.next());
-                                    funcionarioController.update(Gui1);
+                                    funcionarioController.update(?);
                                     break;
                                 case 4:
                                     System.out.println("Você tem certeza que quer deletar sua conta");
                                     if (scanner.next().equalsIgnoreCase("Sim")) {
-                                        funcionarioController.delete(Gui1);
+                                        funcionarioController.delete(?);
                                     } else break;
                                 case 0:
                                     System.out.println("Saindo...");
@@ -162,7 +160,7 @@ public class ClienteGui {
 
 
                                     //errado
-                                    ContaCredito guiCred = new ContaCredito("3", "3");
+                                    ContaCredito ? = new ContaCredito("3", "3");
                                     boolean next1 = true;
                                     while (next1) {
                                         System.out.println("Escolha a operação:");
@@ -176,25 +174,25 @@ public class ClienteGui {
                                             case 1:
                                                 //n deve ser fornecido pelo usuario arrumar dps
                                                 System.out.println("Digite o número do cliente:");
-                                                guiCred.setNumero(scanner.next());
+                                                ?.setNumero(scanner.next());
                                                 System.out.println("Digite o CPF do cliente:");
-                                                guiCred.setCpfCnpj(scanner.next());
-                                                contaController.add(guiCred);
+                                                ?.setCpfCnpj(scanner.next());
+                                                contaController.add(?);
                                                 break;
                                             case 2:
                                                 System.out.println("Digite o CPF do cliente que deseja buscar:");
-                                                guiCred.setCpfCnpj(scanner.next());
-                                                contaController.get(guiCred.getCpfCnpj());
+                                                ?.setCpfCnpj(scanner.next());
+                                                contaController.get(?.getCpfCnpj());
                                                 break;
                                             case 3:
                                                 System.out.println("Digite o novo número do cliente:");
-                                                guiCred.setNumero(scanner.next());
-                                                contaController.update(guiCred);
+                                                ?.setNumero(scanner.next());
+                                                contaController.update(?);
                                                 break;
                                             case 4:
                                                 System.out.println("Você tem certeza que quer deletar sua conta");
                                                 if (scanner.next().equalsIgnoreCase("Sim")) {
-                                                    contaController.delete(guiCred);
+                                                    contaController.delete(?);
                                                 } else break;
                                             case 0:
                                                 System.out.println("Saindo...");
@@ -208,7 +206,7 @@ public class ClienteGui {
 
                                 case 2:
                                     //ERRADO
-                                    Contadebito guiDeb = new Contadebito("3", "3");
+                                    Contadebito ? = new Contadebito("3", "3");
                                     boolean next2 = true;
                                     while (next2) {
                                         System.out.println("Escolha a operação:");
@@ -222,25 +220,25 @@ public class ClienteGui {
                                             case 1:
                                                 //n deve ser fornecido pelo usuario arrumar dps
                                                 System.out.println("Digite o número do cliente:");
-                                                guiDeb.setNumero(scanner.next());
+                                                ?.setNumero(scanner.next());
                                                 System.out.println("Digite o CPF do cliente:");
-                                                guiDeb.setCpfCnpj(scanner.next());
-                                                contaController.add(guiDeb);
+                                                ?.setCpfCnpj(scanner.next());
+                                                contaController.add(?);
                                                 break;
                                             case 2:
                                                 System.out.println("Digite o CPF do cliente que deseja buscar:");
                                                 guiDeb.setCpfCnpj(scanner.next());
-                                                contaController.get(guiDeb.getCpfCnpj());
+                                                contaController.get(?.getCpfCnpj());
                                                 break;
                                             case 3:
                                                 System.out.println("Digite o novo número do cliente:");
-                                                guiDeb.setNumero(scanner.next());
-                                                contaController.update(guiDeb);
+                                                ?.setNumero(scanner.next());
+                                                contaController.update(?);
                                                 break;
                                             case 4:
                                                 System.out.println("Você tem certeza que quer deletar sua conta");
                                                 if (scanner.next().equalsIgnoreCase("Sim")) {
-                                                    contaController.delete(guiDeb);
+                                                    contaController.delete(?);
                                                 } else break;
                                             case 0:
                                                 System.out.println("Saindo...");
@@ -271,22 +269,22 @@ public class ClienteGui {
                                                 guiPou.setNumero(scanner.next());
                                                 System.out.println("Digite o CPF do cliente:");
                                                 guiPou.setCpfCnpj(scanner.next());
-                                                contaController.add(guiPou);
+                                                contaController.add(?);
                                                 break;
                                             case 2:
                                                 System.out.println("Digite o CPF do cliente que deseja buscar:");
                                                 guiPou.setCpfCnpj(scanner.next());
-                                                contaController.get(guiPou.getCpfCnpj());
+                                                contaController.get(?.getCpfCnpj());
                                                 break;
                                             case 3:
                                                 System.out.println("Digite o novo número do cliente:");
-                                                guiPou.setNumero(scanner.next());
-                                                contaController.update(guiPou);
+                                                ?.setNumero(scanner.next());
+                                                contaController.update(?);
                                                 break;
                                             case 4:
                                                 System.out.println("Você tem certeza que quer deletar sua conta");
                                                 if (scanner.next().equalsIgnoreCase("Sim")) {
-                                                    contaController.delete(guiPou);
+                                                    contaController.delete(?);
                                                 } else break;
                                             case 0:
                                                 System.out.println("Saindo...");
@@ -317,7 +315,7 @@ public class ClienteGui {
                                                 contaSalario.setNumero(scanner.next());
                                                 System.out.println("Digite o CPF do cliente:");
                                                 contaSalario.setCpfCnpj(scanner.next());
-                                                contaController.add(guiPou);
+                                                contaController.add(?);
                                                 break;
                                             case 2:
                                                 System.out.println("Digite o CPF do cliente que deseja buscar:");
