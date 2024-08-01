@@ -1,6 +1,4 @@
 package bank.repository.impl;
-
-import bank.constantstexts.Constants;
 import bank.exceptions.ClienteNaoExisteException;
 import bank.models.Cliente;
 import bank.repository.ClienteDAO;

@@ -14,8 +14,14 @@ import bank.service.ContaService;
 
 public class ContaServiceImpl implements ContaService {
 
+
 	private ContaDAO contaDAO = new ContaDAOImpl();
 	private ClienteService clienteService = new ClienteServiceImpl();
+
+	//TODO padrão SINGLETON, serve para que essa classe seja instanciada uma vez apenas em toda classe,
+	// dando um acesso global em toda classe sem criar novas instancias
+	//Ainda preciso que me explique oq fiz
+
 
 
 	/**

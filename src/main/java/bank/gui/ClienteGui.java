@@ -3,6 +3,7 @@ package bank.gui;
 import bank.controller.ClienteController;
 import bank.controller.ContaController;
 import bank.controller.FuncionarioController;
+import bank.exceptions.ClienteNaoExisteException;
 import bank.models.*;
 
 import java.util.Scanner;
@@ -10,8 +11,9 @@ import java.util.Scanner;
 public class ClienteGui {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        //Perguntar qual a vantagem disso nesses casos, n entendi tao bem
         ContaController contaController = new ContaController();
-        ContaPoupanca ? = new ContaPoupanca("3", "3");
+
 
         /*Thread tarefa = new Thread(() -> {
             while (true) {
@@ -49,7 +51,7 @@ public class ClienteGui {
                         return;
                     case 1:
                         ClienteController clienteController = new ClienteController();
-                        Cliente ? = new Cliente();
+
                         boolean continuar = true;
                         while (continuar) {
                             System.out.println("Escolha a operação:");
@@ -62,28 +64,43 @@ public class ClienteGui {
                             escolha = scanner.nextInt();
                             switch (escolha) {
                                 case 1:
-
+                                    Cliente cliente = new Cliente();
                                     System.out.println("Digite o nome do cliente:");
-                                    ?.setName(scanner.next());
+                                    cliente.setName(scanner.next());
                                     System.out.println("Digite o CPF do cliente:");
-                                    ?.setCpfCnpj(scanner.next());
-                                    clienteController.add(?);
+                                    cliente.setCpfCnpj(scanner.next());
+                                    clienteController.add(cliente);
+                                    //TODO TRATAR ADD DUPLO
                                     break;
                                 case 2:
-                                    System.out.println("Digite o CPF do cliente que deseja buscar:");
-                                    Cliente clienteGet = clienteController.get(scanner.next());
-                                    System.out.println("Nome: " + clienteGet.getName());
+                                    System.out.println("Digite o CPF do cliente que deseja buscar: ");
+                                    try {
+                                        Cliente clienteGet = clienteController.get(scanner.next());
+                                        System.out.println(clienteGet.toString());
+
+                                    }catch (ClienteNaoExisteException e){
+                                        System.out.println(e.getMessage());
+                                    }
+
                                     break;
                                 case 3:
+                                    //TODO
                                     System.out.println("Digite o novo nome do cliente:");
-                                    ?.setName(scanner.next());
-                                    clienteController.update(?);
+                                    //cliente.setName(scanner.next());
+                                    //clienteController.update(cliente);
                                     break;
                                 case 4:
-                                    System.out.println("Você tem certeza que quer deletar sua conta");
-                                    if (scanner.next().equalsIgnoreCase("Sim")) {
-                                        clienteController.delete(?);
-                                    } else break;
+                                    System.out.println("Digite o CPF do cliente que deseja delete: ");
+                                    Cliente get = null;
+                                    try {
+                                        get = clienteController.get(scanner.next());
+                                        clienteController.delete(get);
+                                        System.out.println("Cliente deletado com sucesso!");
+                                    }catch (ClienteNaoExisteException e){
+                                        System.out.println(e.getMessage());
+                                    }
+
+                                    break;
                                 case 0:
                                     System.out.println("Saindo...");
                                     continuar = false;
@@ -94,6 +111,7 @@ public class ClienteGui {
                             }
                         }
                         break;
+/*
                     case 2:
 
                         FuncionarioController funcionarioController = new FuncionarioController();

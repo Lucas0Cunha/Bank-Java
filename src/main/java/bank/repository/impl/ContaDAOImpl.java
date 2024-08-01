@@ -6,6 +6,7 @@ import bank.repository.ContaDAO;
 
 public class ContaDAOImpl implements ContaDAO {
 
+    //TODO PADRAO SINGLETON, FUNCIONARIA PARA MANTER A BASE DE DADOS UNICA (O MESMO USO DO STATIC NESSE CASO)
 
     private static Conta[] contas = new Conta[50];
     private int totalDeContas =0;
@@ -18,7 +19,7 @@ public class ContaDAOImpl implements ContaDAO {
         totalDeContas++;
     }
 
-
+//TODO APLICAR BINARY AND BUBBLE
     @Override
     public Conta get(String numeroConta) {
 
