@@ -1,15 +1,22 @@
 package bank.repository.impl;
-
-import bank.constantstexts.Constants;
 import bank.models.Conta;
 import bank.repository.ContaDAO;
 
 public class ContaDAOImpl implements ContaDAO {
+    // PADRAO SINGLETON, FUNCIONARIA PARA MANTER A BASE DE DADOS UNICA (O MESMO USO DO STATIC NESSE CASO)
+    //TODO ONDE EU VEJO A ALTERAÇÃO 
+    private static ContaDAOImpl instance;
 
-    //TODO PADRAO SINGLETON, FUNCIONARIA PARA MANTER A BASE DE DADOS UNICA (O MESMO USO DO STATIC NESSE CASO)
-
-    private static Conta[] contas = new Conta[50];
+    private Conta[] contas = new Conta[50];
     private int totalDeContas =0;
+
+
+    public static synchronized ContaDAOImpl getInstance() {
+        if (instance == null) {
+            instance = new ContaDAOImpl();
+        }
+        return instance;
+    }
 
     @Override
     public void add(Conta contas) {

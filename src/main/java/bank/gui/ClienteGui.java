@@ -232,7 +232,7 @@ public class ClienteGui {
                                                    System.out.println("Digite o CPF/CNPJ da conta: ");
                                                    contaCredito.setCpfCnpj(scanner.next());
                                                    contaController.add(contaCredito);
-                                               }catch (ClienteJaExisteException e){
+                                               }catch (ClienteNaoExisteException e){
                                                    e.getMessage();
                                                }
 
