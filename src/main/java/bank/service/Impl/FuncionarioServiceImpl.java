@@ -73,7 +73,11 @@ public class FuncionarioServiceImpl implements FuncionarioService {
      */
     @Override
     public Funcionario get(String funcionario) {
-        return funcionarioDAO.get(funcionario);
+        if (funcionarioDAO.contem(funcionario)){
+            return funcionarioDAO.get(funcionario);
+        }else {
+            throw new ClienteRegraDeNegocio(Constants.inexiste);
+        }
     }
 
     /**

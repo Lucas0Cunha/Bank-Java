@@ -1,4 +1,6 @@
 package bank.repository.impl;
+
+import bank.models.Cliente;
 import bank.models.Conta;
 import bank.repository.ContaDAO;
 
@@ -8,8 +10,53 @@ public class ContaDAOImpl implements ContaDAO {
     private static ContaDAOImpl instance;
 
     private Conta[] contas = new Conta[50];
-    private int totalDeContas =0;
+    private int totalDeContas = 0;
 
+
+    public void bubbleSort() {
+        //ordenação de array
+        Conta aux;
+        int tamanho = totalDeContas;
+
+        //percorre a lista de vetores
+        for (int i = 0; i < tamanho; i++) {
+
+            //loop dentro de loop, ele vai rodar esse processo até bater o tamanho da array assim a organizando
+            for (int j = 0; j < tamanho - 1; j++) {
+                //passa o valor de string para int e depois compara se o proximo index tem um numero maior, se tiver ele troca o proximo pelo atual e atual pelo proximo
+                //se n tiver ele volta pro loop
+                if (Long.parseLong(contas[j].getNumero()) > Long.parseLong(contas[j + 1].getNumero())) {
+                    aux = contas[j];
+                    //aq ele troca os lugares
+                    contas[j] = contas[j + 1];
+                    contas[j + 1] = aux;
+
+                }
+            }
+
+
+        }
+    }
+
+    private Conta binarySearch(String numeroConta) {
+        int tamanho = totalDeContas;
+        int esquerda = 0;
+        int direita = tamanho - 1;
+
+
+        while (esquerda <= direita) {
+            int meio = (esquerda + direita) / 2;
+
+            if (contas[meio].getNumero().equals(numeroConta)) {
+                return contas[meio];
+            } else if (Long.parseLong(contas[meio].getNumero()) < Long.parseLong(numeroConta)) {
+                esquerda = meio + 1;
+            } else {
+                direita = meio - 1;
+            }
+
+        } return null;
+    }
 
     public static synchronized ContaDAOImpl getInstance() {
         if (instance == null) {
@@ -18,25 +65,22 @@ public class ContaDAOImpl implements ContaDAO {
         return instance;
     }
 
+    //aplicado o bubbleSort para poder organizar a array sempre que for adicionado uma conta
     @Override
     public void add(Conta contas) {
         this.garanteEspaco();
-        this.contas[totalDeContas]= contas;
+        this.contas[totalDeContas] = contas;
         //totalDeClientes = totalDeClientes + 1;
         totalDeContas++;
+        this.bubbleSort();
     }
 
-//TODO APLICAR BINARY AND BUBBLE
+//aplicado o binary para pegar o numero da conta
     @Override
     public Conta get(String numeroConta) {
 
-    	for (int i = 0; i < this.totalDeContas; i++) {
-        	Conta contaIdx = this.contas[i];
-            if (contaIdx.getNumero().equals(numeroConta)) {
-                return contaIdx;
-            }
-        }
-    	return null;
+        this.binarySearch(numeroConta);
+        return null;
     }
 
 
@@ -56,7 +100,7 @@ public class ContaDAOImpl implements ContaDAO {
         if (conta.getId() < 0 || conta.getId() >= this.totalDeContas) {
             throw new IllegalArgumentException("Posição inválida: " + conta);
         }
-        for(int i = conta.getId(); i < this.totalDeContas -1; i++) {
+        for (int i = conta.getId(); i < this.totalDeContas - 1; i++) {
             this.contas[i] = this.contas[i + 1];
         }
         this.contas[this.totalDeContas - 1] = null;
@@ -65,11 +109,11 @@ public class ContaDAOImpl implements ContaDAO {
         this.totalDeContas--;
     }
 
-     @Override
-     public boolean contem(String numeroConta) {
-        if(contas != null) {
+    @Override
+    public boolean contem(String numeroConta) {
+        if (contas != null) {
             for (int i = 0; i < totalDeContas; i++) {
-            	Conta contaIdx = this.contas[i];
+                Conta contaIdx = this.contas[i];
                 if (contaIdx.getNumero().equals(numeroConta)) {
                     return true;
                 }
@@ -80,10 +124,10 @@ public class ContaDAOImpl implements ContaDAO {
     }
 
     private void garanteEspaco() {
-        if(totalDeContas == contas.length) {
+        if (totalDeContas == contas.length) {
 
-            Conta[] novoArray = new Conta[contas.length*2];
-            for(int i = 0; i < contas.length; i++) {
+            Conta[] novoArray = new Conta[contas.length * 2];
+            for (int i = 0; i < contas.length; i++) {
                 novoArray[i] = contas[i];
             }
             this.contas = novoArray;
@@ -91,26 +135,26 @@ public class ContaDAOImpl implements ContaDAO {
     }
 
     @Override
-    public Conta[] getAll()    {
-    	return this.contas;
+    public Conta[] getAll() {
+        return this.contas;
     }
 
-	@Override
-	public boolean update(Conta novaConta) {
-		
-		if(this.contem(novaConta.getNumero())) {
-			
-			for (int i = 0; i < this.totalDeContas; i++) {
-            	Conta contaIdx = this.contas[i];
+    @Override
+    public boolean update(Conta novaConta) {
+
+        if (this.contem(novaConta.getNumero())) {
+
+            for (int i = 0; i < this.totalDeContas; i++) {
+                Conta contaIdx = this.contas[i];
                 if (contaIdx.getNumero().equals(novaConta.getNumero())) {
-                	this.contas[i] = novaConta;
+                    this.contas[i] = novaConta;
                     return true;
                 }
             }
-		}
+        }
 
         return false;
-	}
+    }
 
 }
 
