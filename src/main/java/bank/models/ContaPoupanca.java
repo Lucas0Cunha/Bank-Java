@@ -12,7 +12,9 @@ public class ContaPoupanca extends Conta{
         super(name, cpfCnpj);
         this.saldo = saldo;
     }
-    
+
+    public ContaPoupanca() {
+    }
 
     public double getSaldo() {
         return saldo;

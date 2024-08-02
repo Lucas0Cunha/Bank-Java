@@ -2,16 +2,19 @@ package bank.models;
 
 import bank.util.TipoConta;
 
-public class Contadebito extends Conta{
+public class ContaDebito extends Conta{
     double saldo;
 
-    public Contadebito(String numero, String cpfCnpj) {
+    public ContaDebito(String numero, String cpfCnpj) {
         super(numero, cpfCnpj);
     }
     
-    public Contadebito(String numero, String cpfCnpj, double saldo) {
+    public ContaDebito(String numero, String cpfCnpj, double saldo) {
         super(numero, cpfCnpj);
         this.saldo = saldo;
+    }
+
+    public ContaDebito() {
     }
 
     public double getSaldo() {

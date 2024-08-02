@@ -5,7 +5,7 @@ import bank.controller.ContaController;
 import bank.exceptions.ClienteNaoExisteException;
 import bank.models.Cliente;
 import bank.models.Conta;
-import bank.models.Contadebito;
+import bank.models.ContaDebito;
 
 public class TesteCliente {
     public static void main(String[] args) {
@@ -13,8 +13,8 @@ public class TesteCliente {
         cliente.setCpfCnpj("123");
         cliente.setName("Lucas");
 
-        Conta conta1 = new Contadebito("2","123");
-        Conta conta2 = new Contadebito("3","456");
+        Conta conta1 = new ContaDebito("2","123");
+        Conta conta2 = new ContaDebito("3","456");
 
         ClienteController clienteController = new ClienteController();
         clienteController.add(cliente);

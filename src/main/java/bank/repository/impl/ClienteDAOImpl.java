@@ -52,7 +52,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 			if (currentItem.getCpfCnpj().equals(update.getCpfCnpj())) {
 				dataBase.set(i, update);
-				System.out.println("Cliente atualizado com sucesso!");
+
 				return true;
             }
 		}

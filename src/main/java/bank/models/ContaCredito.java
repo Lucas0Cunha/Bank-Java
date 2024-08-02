@@ -11,6 +11,9 @@ public class ContaCredito extends Conta {
 		super(numero, cpfCnpj);
 	}
 
+	public ContaCredito() {
+	}
+
 	public void PermissaoCredito(double saldo) {
 
 		if (saldo == 0) {

@@ -9,7 +9,10 @@ public class ContaSalario extends Conta{
 	public ContaSalario(String numero, String cpfCnpj) {
 		super(numero, cpfCnpj);
 	}
-	
+
+	public ContaSalario() {
+	}
+
 	public ContaSalario(String numero, String cpfCnpj, double saldo) {
 		super(numero, cpfCnpj);
 		this.saldo = saldo;
