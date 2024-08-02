@@ -4,7 +4,7 @@ import bank.repository.ContaDAO;
 
 public class ContaDAOImpl implements ContaDAO {
     // PADRAO SINGLETON, FUNCIONARIA PARA MANTER A BASE DE DADOS UNICA (O MESMO USO DO STATIC NESSE CASO)
-    //TODO ONDE EU VEJO A ALTERAÇÃO 
+    //TODO ONDE EU VEJO A ALTERAÇÃO
     private static ContaDAOImpl instance;
 
     private Conta[] contas = new Conta[50];
