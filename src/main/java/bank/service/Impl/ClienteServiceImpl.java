@@ -2,6 +2,7 @@ package bank.service.Impl;
 
 import java.util.List;
 
+import bank.constantstexts.ConstantsCliente;
 import bank.exceptions.ClienteJaExisteException;
 import bank.exceptions.ClienteRegraDeNegocio;
 import bank.models.Cliente;
@@ -32,7 +33,7 @@ public class ClienteServiceImpl implements ClienteService {
             clienteDAO.add(cliente);
         } else {
 
-            throw new ClienteJaExisteException("CPF ou CNPJ já cadastrado no sistema para este" + cliente);
+            throw new ClienteJaExisteException(ConstantsCliente.existente);
         }
     }
 
@@ -66,7 +67,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (clienteDAO.contem(cliente.getCpfCnpj())) {
             clienteDAO.delete(cliente);
         } else {
-            throw new ClienteRegraDeNegocio("Cliente" + cliente + " não encontrado para exclusão.");
+            throw new ClienteRegraDeNegocio(ConstantsCliente.NOT_FOUND+" para exclusão");
         }
     }
 
@@ -96,7 +97,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (clienteDAO.contem(update.getCpfCnpj())) {
             return clienteDAO.update(update);
         } else {
-            throw new ClienteRegraDeNegocio("Cliente não encontrado para atualização.");
+            throw new ClienteRegraDeNegocio(ConstantsCliente.NOT_FOUND +" atualização.");
         }
     }
 

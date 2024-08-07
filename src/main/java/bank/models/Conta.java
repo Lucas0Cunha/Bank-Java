@@ -4,9 +4,11 @@ import bank.util.TipoConta;
 
 public abstract class Conta {
 
+	private double saldo;
 	private int id;
 	private String numero;
 	private String cpfCnpj;
+
 
 	public Conta(String numero, String cpfCnpj) {
 		this.numero = numero;
@@ -46,5 +48,13 @@ public abstract class Conta {
 	@Override
 	public String toString() {
 		return "Conta [tipo: "+ this.getTipoConta() +", id=" + id + ", numero=" + numero + ", cpfCnpj=" + cpfCnpj + "]";
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
 	}
 }

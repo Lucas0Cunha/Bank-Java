@@ -1,12 +1,11 @@
 package bank.repository.impl;
 
-import bank.models.Cliente;
 import bank.models.Conta;
 import bank.repository.ContaDAO;
 
 public class ContaDAOImpl implements ContaDAO {
+
     // PADRAO SINGLETON, FUNCIONARIA PARA MANTER A BASE DE DADOS UNICA (O MESMO USO DO STATIC NESSE CASO)
-    //TODO ONDE EU VEJO A ALTERAÇÃO
     private static ContaDAOImpl instance;
 
     private Conta[] contas = new Conta[50];
@@ -16,13 +15,13 @@ public class ContaDAOImpl implements ContaDAO {
     public void bubbleSort() {
         //ordenação de array
         Conta aux;
-        int tamanho = totalDeContas;
+        int t = totalDeContas;
 
         //percorre a lista de vetores
-        for (int i = 0; i < tamanho; i++) {
+        for (int i = 0; i < t; i++) {
 
             //loop dentro de loop, ele vai rodar esse processo até bater o tamanho da array assim a organizando
-            for (int j = 0; j < tamanho - 1; j++) {
+            for (int j = 0; j < t - 1; j++) {
                 //passa o valor de string para int e depois compara se o proximo index tem um numero maior, se tiver ele troca o proximo pelo atual e atual pelo proximo
                 //se n tiver ele volta pro loop
                 if (Long.parseLong(contas[j].getNumero()) > Long.parseLong(contas[j + 1].getNumero())) {
@@ -55,7 +54,8 @@ public class ContaDAOImpl implements ContaDAO {
                 direita = meio - 1;
             }
 
-        } return null;
+        }
+        return null;
     }
 
     public static synchronized ContaDAOImpl getInstance() {
@@ -75,7 +75,7 @@ public class ContaDAOImpl implements ContaDAO {
         this.bubbleSort();
     }
 
-//aplicado o binary para pegar o numero da conta
+    //aplicado o binary para pegar o numero da conta
     @Override
     public Conta get(String numeroConta) {
 
@@ -154,6 +154,27 @@ public class ContaDAOImpl implements ContaDAO {
         }
 
         return false;
+    }
+
+    @Override
+    public double limiteget(double saldo) {
+        double result;
+        if (saldo > 1000) {
+            result = saldo * 0.50;
+        } else if (saldo > 750) {
+            result = saldo * 0.60;
+        } else if (saldo > 500) {
+            result = saldo * 0.75;
+        } else if (saldo > 250) {
+            result = saldo * 0.85;
+        } else {
+            result = saldo;
+        }
+        return result;
+    }
+
+    public double getSaldo() {
+        return getSaldo();
     }
 
 }

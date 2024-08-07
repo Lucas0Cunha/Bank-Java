@@ -56,4 +56,15 @@ public interface ContaService {
      * @return
      */
     public Conta get(String numeroConta);
+
+
+    /**
+     * Metodo que define qual limite disponivel em conta
+     *
+     * @param saldo
+     * @return
+     */
+    public double limiteget(double saldo);
+
+    double getSaldo();
 }

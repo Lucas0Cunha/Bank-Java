@@ -1,6 +1,6 @@
 package bank.service.Impl;
 
-import bank.constantstexts.Constants;
+import bank.constantstexts.ConstantsConta;
 import bank.dto.ContaRequestDTO;
 import bank.exceptions.ClienteNaoExisteException;
 import bank.models.Conta;
@@ -37,7 +37,8 @@ public class ContaServiceImpl implements ContaService {
 			contaDAO.add(conta);
 		} else {
 			//throw new funciona bascimente para quando for "instanciar" uma classe que representa algum tipo de erro.
-			throw new ClienteNaoExisteException("Não existe cliente para a conta: " + conta.getNumero());
+			throw new ClienteNaoExisteException(ConstantsConta.inexiste);
+
 		}
 	}
 
@@ -62,7 +63,7 @@ public class ContaServiceImpl implements ContaService {
 		if (contaDAO.contem(contaAtualizada.getCpfCnpj())) {
 			contaDAO.update(contaAtualizada);
 		} else {
-			throw new IllegalArgumentException(Constants.NOT_FOUND);
+			throw new IllegalArgumentException(ConstantsConta.NOT_FOUND);
 		}
 
 	}
@@ -85,7 +86,7 @@ public class ContaServiceImpl implements ContaService {
 		if (contaDAO.contem(conta.getCpfCnpj())) {
 			contaDAO.delete(conta);
 		} else {
-			throw new IllegalArgumentException(Constants.NOT_FOUND);
+			throw new IllegalArgumentException(ConstantsConta.NOT_FOUND);
 		}
 	}
 
@@ -134,5 +135,43 @@ public class ContaServiceImpl implements ContaService {
 		}
 		return null;
 	}
+
+	/**
+	 * metodo para definir o limite do cartão pelo saldo
+	 * @param saldo
+	 * @return
+	 */
+	@Override
+	public double limiteget(double saldo) {
+		double result;
+		if (saldo > 1000) {
+
+			result = saldo * 0.50;
+		} else if (saldo > 750) {
+
+			result = saldo * 0.60;
+		} else if (saldo > 500) {
+
+			result = saldo * 0.75;
+		} else if (saldo > 250) {
+
+			result = saldo * 0.85;
+		} else {
+
+			result = saldo;
+		}
+
+		return result;
+	}
+
+	/**
+	 * metodo que retorna o saldo
+	 * @return
+	 */
+	@Override
+	public double getSaldo() {
+		return getSaldo();
+	}
+
 
 }

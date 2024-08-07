@@ -1,6 +1,6 @@
 package bank.service.Impl;
 
-import bank.constantstexts.Constants;
+import bank.constantstexts.ConstantsFuncionario;
 import bank.exceptions.ClienteRegraDeNegocio;
 import bank.models.Funcionario;
 import bank.repository.FuncionarioDAO;
@@ -21,7 +21,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (!funcionarioDAO.contem(funcionario.getCpfCnpj())) {
             funcionarioDAO.add(funcionario);
         } else {
-            throw new IllegalArgumentException(Constants.existente);
+            throw new IllegalArgumentException(ConstantsFuncionario.existente);
         }
     }
 
@@ -36,7 +36,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(contem)) {
             return funcionarioDAO.contem(contem);
         } else {
-            throw new IllegalArgumentException(Constants.NOT_FOUND);
+            throw new IllegalArgumentException(ConstantsFuncionario.NOT_FOUND);
         }
     }
 
@@ -62,7 +62,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(delete.getCpfCnpj())) {
             funcionarioDAO.delete(delete);
         } else {
-            throw new IllegalArgumentException(Constants.NOT_FOUND);
+            throw new IllegalArgumentException(ConstantsFuncionario.NOT_FOUND);
         }
     }
 
@@ -76,7 +76,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
         if (funcionarioDAO.contem(funcionario)){
             return funcionarioDAO.get(funcionario);
         }else {
-            throw new ClienteRegraDeNegocio(Constants.inexiste);
+            throw new ClienteRegraDeNegocio(ConstantsFuncionario.inexiste);
         }
     }
 

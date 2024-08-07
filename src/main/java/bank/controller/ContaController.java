@@ -2,6 +2,7 @@ package bank.controller;
 
 import bank.dto.ContaRequestDTO;
 import bank.models.Conta;
+import bank.repository.impl.ContaDAOImpl;
 import bank.service.ContaService;
 import bank.service.Impl.ContaServiceImpl;
 
@@ -36,5 +37,15 @@ public class ContaController {
 	public Conta get(String numeroConta) {
 		return contaService.get(numeroConta);
 	}
+
+	public double calcularLimite(double saldo) {
+		return ContaDAOImpl.getInstance().limiteget(saldo);
+	}
+
+	public double getSaldo(String numeroConta) {
+		return getSaldo(numeroConta);
+	}
+
+
 
 }

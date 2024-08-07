@@ -7,32 +7,16 @@ import bank.exceptions.ClienteJaExisteException;
 import bank.exceptions.ClienteNaoExisteException;
 import bank.exceptions.ClienteRegraDeNegocio;
 import bank.models.*;
+import bank.util.TipoConta;
+
 
 import java.util.Scanner;
 
-public class ClienteGui {
+public class Cliente {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        //Perguntar qual a vantagem disso nesses casos, n entendi tao bem
+
         ContaController contaController = new ContaController();
-
-
-        /*Thread tarefa = new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(10000); // Espera 10 segundos
-                    System.out.println("Verificando status... Status: Online");
-
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    System.out.println("A tarefa de fundo foi interrompida.");
-                }
-            }
-        });
-
-        // Inicia a thread
-        tarefa.setDaemon(true); // A thread será encerrada quando a aplicação principal for encerrada
-        tarefa.start(); */
 
         while (true) {
             System.out.println("\n### Menu ###");
@@ -66,7 +50,7 @@ public class ClienteGui {
                             escolha = scanner.nextInt();
                             switch (escolha) {
                                 case 1:
-                                    Cliente cliente = new Cliente();
+                                    bank.models.Cliente cliente = new bank.models.Cliente();
                                     try {
                                         System.out.println("Digite o nome do cliente:");
                                         cliente.setName(scanner.next());
@@ -80,7 +64,7 @@ public class ClienteGui {
                                 case 2:
                                     System.out.println("Digite o CPF do cliente que deseja buscar: ");
                                     try {
-                                        Cliente clienteGet = clienteController.get(scanner.next());
+                                        bank.models.Cliente clienteGet = clienteController.get(scanner.next());
                                         System.out.println(clienteGet.toString());
 
                                     } catch (ClienteNaoExisteException e) {
@@ -92,7 +76,7 @@ public class ClienteGui {
 
                                     System.out.println("Digite o CPF do cliente que deseja buscar: ");
                                     try {
-                                        Cliente clienteGet = clienteController.get(scanner.next());
+                                        bank.models.Cliente clienteGet = clienteController.get(scanner.next());
                                         System.out.println("Digite o novo nome do cliente:");
                                         clienteGet.setName(scanner.next());
                                         clienteController.update(clienteGet);
@@ -106,15 +90,15 @@ public class ClienteGui {
                                 case 4:
                                     System.out.println("Você tem certeza que quer deletar sua conta");
                                     if (scanner.next().equalsIgnoreCase("Sim")) {
-                                    System.out.println("Digite o CPF do cliente que deseja deletar: ");
-                                    Cliente get = null;
-                                    try {
-                                        get = clienteController.get(scanner.next());
-                                        clienteController.delete(get);
-                                        System.out.println("Cliente deletado com sucesso!");
-                                    } catch (ClienteNaoExisteException e) {
-                                        System.out.println(e.getMessage());
-                                    }
+                                        System.out.println("Digite o CPF do cliente que deseja deletar: ");
+                                        bank.models.Cliente get = null;
+                                        try {
+                                            get = clienteController.get(scanner.next());
+                                            clienteController.delete(get);
+                                            System.out.println("Cliente deletado com sucesso!");
+                                        } catch (ClienteNaoExisteException e) {
+                                            System.out.println(e.getMessage());
+                                        }
                                     } else {
                                         break;
                                     }
@@ -208,7 +192,7 @@ public class ClienteGui {
                             }
                         }
                     case 3:
-                    //TODO METODO DE TIPO DE CONTA AUTOMATICO
+                        //TODO METODO DE TIPO DE CONTA AUTOMATICO
                         while (true) {
                             System.out.println("\n### Tipos de Conta ###");
                             System.out.println("1. Conta Crédito");
@@ -224,41 +208,84 @@ public class ClienteGui {
                                     System.out.println("Encerrando o programa...");
                                     return;
                                 case 1:
+                                    Thread tarefa = new Thread(() -> {
+                                        while (true) {
+                                            try {
+                                                Thread.sleep(20000); // Espera 10 segundos
+                                                System.out.println("Você está na conta de tipo "+TipoConta.CREDITO);
+
+                                            } catch (InterruptedException e) {
+                                                Thread.currentThread().interrupt();
+                                                System.out.println("A tarefa de fundo foi interrompida.");
+                                            }
+                                        }
+                                    });
+
+                                    // Inicia a thread
+                                    tarefa.setDaemon(true); // A thread será encerrada quando a aplicação principal for encerrada
+                                    tarefa.start();
 
                                     while (true) {
                                         System.out.println("Escolha a operação:");
-                                        System.out.println("1. Cadastrar cliente");
-                                        System.out.println("2. Buscar cliente");
-                                        System.out.println("3. Atualizar cliente");
-                                        System.out.println("4. Deletar cliente");
+                                        System.out.println("1. Criar conta crédito");
+                                        System.out.println("2. Buscar conta");
+                                        System.out.println("3. Atualizar conta");
+                                        System.out.println("4. Deletar conta");
                                         System.out.println("0. Voltar ao menu principal");
-                                        //PQ PRECISO ADICIONAR NOVAMENTE UMA OPCAO E N POSSO USAR A ANTERIOR
+
                                         int opcao2 = scanner.nextInt();
 
                                         switch (opcao2) {
                                             case 1:
                                                 try {
-                                                    System.out.println("Digite o número da conta: ");
                                                     ContaCredito contaCredito = new ContaCredito();
+                                                    System.out.println("Digite o número do seu cartão de crédito: ");
                                                     contaCredito.setNumero(scanner.next());
+
                                                     System.out.println("Digite o CPF/CNPJ da conta: ");
                                                     contaCredito.setCpfCnpj(scanner.next());
-                                                    contaController.add(contaCredito);
-                                                } catch (ClienteNaoExisteException e) {
-                                                    System.out.println(e.getMessage());
-                                                }
 
+                                                    // Solicitar o saldo
+                                                    System.out.println("Digite o seu total saldo em conta: ");
+                                                    double saldo = scanner.nextDouble();
+                                                    double limite = contaController.calcularLimite(saldo);
+
+                                                    contaController.add(contaCredito);
+
+                                                    System.out.println("Conta criada com sucesso!");
+                                                    System.out.println("O seu limite em conta é de: " + limite);
+                                                } catch (ClienteNaoExisteException e) {
+                                                    System.out.println(e.getMessage() + ", antes de você criar uma conta tipo crédito, precisa ser nosso cliente.");
+                                                }
                                                 break;
                                             case 2:
-                                                System.out.println("Digite o CPF do cliente que deseja buscar:");
+                                                System.out.println("Digite o número da conta que deseja buscar:");
+
+                                                //TODO COMO FAÇO PARA SEREM A MSM CONTA AGR
                                                 try {
                                                     ContaCredito contaCredito = new ContaCredito();
-                                                    Conta contacredget = contaController.get(contaCredito.getCpfCnpj());
-                                                    System.out.println(contacredget.toString());
+                                                    double numeroConta = contaCredito.getSaldo();
+                                                    //AQUI PRECISA DAR O GET DA CONTA CADASTRADA
+                                                    Conta conta = contaController.get(scanner.next());
+
+                                                    if (conta != null) {
+                                                        System.out.println("Conta encontrada:");
+                                                        System.out.println(conta.toString());
+
+
+                                                        double saldo = contaController.getSaldo(String.valueOf(numeroConta));
+
+
+                                                        double limite = contaController.calcularLimite(saldo);
+
+                                                        System.out.println("O limite do seu cartão é de: " + limite);
+                                                    } else {
+                                                        System.out.println("Conta não encontrada.");
+                                                    }
+
                                                 } catch (ClienteNaoExisteException e) {
                                                     System.out.println(e.getMessage());
                                                 }
-
                                                 break;
                                             case 3:
                                                 System.out.println("Digite o número da conta que deseja alterar");
@@ -297,12 +324,26 @@ public class ClienteGui {
                                     }
 
                                 case 2:
+                                    Thread tarefadeb = new Thread(() -> {
+                                        while (true) {
+                                            try {
+                                                Thread.sleep(20000); // Espera 10 segundos
+                                                System.out.println("Você está na conta de tipo "+TipoConta.DEBITO);
 
+                                            } catch (InterruptedException e) {
+                                                Thread.currentThread().interrupt();
+                                                System.out.println("A tarefa de fundo foi interrompida.");
+                                            }
+                                        }
+                                    });
 
+                                    // Inicia a thread
+                                    tarefadeb.setDaemon(true); // A thread será encerrada quando a aplicação principal for encerrada
+                                    tarefadeb.start();
 
                                     while (true) {
                                         System.out.println("Escolha a operação:");
-                                        System.out.println("1. Cadastrar conta");
+                                        System.out.println("1. Criar conta débito");
                                         System.out.println("2. Buscar conta");
                                         System.out.println("3. Atualizar conta");
                                         System.out.println("4. Deletar conta");
@@ -323,7 +364,6 @@ public class ClienteGui {
                                                 try {
                                                     Conta contaDebGet = contaController.get(scanner.next());
                                                     System.out.println(contaDebGet.toString());
-                                                    //TODO EXCEPTION PARA CADA CLASSE
                                                 } catch (ClienteNaoExisteException e) {
                                                     System.out.println(e.getMessage());
                                                 }
@@ -365,11 +405,26 @@ public class ClienteGui {
 
 
                                 case 3:
+                                    Thread tarefapou = new Thread(() -> {
+                                        while (true) {
+                                            try {
+                                                Thread.sleep(20000); // Espera 10 segundos
+                                                System.out.println("Você está na conta de tipo "+TipoConta.POUPANCA);
 
+                                            } catch (InterruptedException e) {
+                                                Thread.currentThread().interrupt();
+                                                System.out.println("A tarefa de fundo foi interrompida.");
+                                            }
+                                        }
+                                    });
+
+                                    // Inicia a thread
+                                    tarefapou.setDaemon(true); // A thread será encerrada quando a aplicação principal for encerrada
+                                    tarefapou.start();
 
                                     while (true) {
                                         System.out.println("Escolha a operação:");
-                                        System.out.println("1. Cadastrar cliente");
+                                        System.out.println("1. Criar conta poupança");
                                         System.out.println("2. Buscar cliente");
                                         System.out.println("3. Atualizar cliente");
                                         System.out.println("4. Deletar cliente");
@@ -435,11 +490,26 @@ public class ClienteGui {
                                     }
 
                                 case 4:
+                                    Thread tarefasal = new Thread(() -> {
+                                        while (true) {
+                                            try {
+                                                Thread.sleep(20000); // Espera 10 segundos
+                                                System.out.println("Você está na conta de tipo "+TipoConta.SALARIO);
 
+                                            } catch (InterruptedException e) {
+                                                Thread.currentThread().interrupt();
+                                                System.out.println("A tarefa de fundo foi interrompida.");
+                                            }
+                                        }
+                                    });
+
+                                    // Inicia a thread
+                                    tarefasal.setDaemon(true); // A thread será encerrada quando a aplicação principal for encerrada
+                                    tarefasal.start();
 
                                     while (true) {
                                         System.out.println("Escolha a operação:");
-                                        System.out.println("1. Cadastrar cliente");
+                                        System.out.println("1. Criar conta salário");
                                         System.out.println("2. Buscar cliente");
                                         System.out.println("3. Atualizar cliente");
                                         System.out.println("4. Deletar cliente");
@@ -458,7 +528,7 @@ public class ClienteGui {
                                             case 2:
                                                 System.out.println("Digite o CPF do cliente que deseja buscar:");
                                                 try {
-                                                    //TODO PQ ISSO FUNCIONA
+
                                                     contaSalario = new ContaSalario();
                                                     Conta contaSalGet = contaController.get(contaSalario.getCpfCnpj());
                                                     System.out.println(contaSalGet.toString());
