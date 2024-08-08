@@ -79,8 +79,8 @@ public class ContaDAOImpl implements ContaDAO {
     @Override
     public Conta get(String numeroConta) {
 
-        this.binarySearch(numeroConta);
-        return null;
+
+        return this.binarySearch(numeroConta);
     }
 
 

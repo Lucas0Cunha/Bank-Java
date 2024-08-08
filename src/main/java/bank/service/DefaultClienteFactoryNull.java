@@ -1,8 +1,8 @@
-package bank.factory;
+package bank.service;
 
 import bank.models.Cliente;
 
-public class DefaultClienteFactory implements ClienteFactory {
+public class DefaultClienteFactoryNull implements ClienteFactoryNull {
 
 
     // este facotry tem a ideia de facilitar no futuro a criação de novos tipo de clientes, sem precisar ficar criando uma classe distinta para cada um deles

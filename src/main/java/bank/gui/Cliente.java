@@ -99,9 +99,9 @@ public class Cliente {
                                         } catch (ClienteNaoExisteException e) {
                                             System.out.println(e.getMessage());
                                         }
-                                    } else {
-                                        break;
                                     }
+
+                                    break;
                                 case 0:
                                     System.out.println("Saindo...");
                                     continuar = false;
@@ -121,6 +121,7 @@ public class Cliente {
                         while (next) {
                             System.out.println("Escolha a operação:");
                             System.out.println("1. Cadastrar funcionário");
+                            //TODO MELHORAR BUSCA COM EMAIL E TBM REMOVER O TO STRING DO ID, E REGRA DE NEGOCIO COM NULL MUDAR ISSO
                             System.out.println("2. Buscar funcionário");
                             System.out.println("3. Atualizar funcionário");
                             System.out.println("4. Deletar funcionário");
@@ -177,8 +178,6 @@ public class Cliente {
                                         } catch (ClienteNaoExisteException e) {
                                             System.out.println(e.getMessage());
                                         }
-                                    } else {
-                                        break;
                                     }
 
                                     break;
@@ -192,13 +191,15 @@ public class Cliente {
                             }
                         }
                     case 3:
-                        //TODO METODO DE TIPO DE CONTA AUTOMATICO
+
                         while (true) {
                             System.out.println("\n### Tipos de Conta ###");
                             System.out.println("1. Conta Crédito");
                             System.out.println("2. Conta Débito");
                             System.out.println("3. Conta Poupança");
                             System.out.println("4. Conta Salário");
+                            //TODO VERIFICAÇÃO QUAIS CONTAS O CPFCNPJ DO CLIENTE ELE POSSUI
+                            System.out.println("5. Suas contas");
                             System.out.println("0. Sair");
                             System.out.print("Escolha uma opção: ");
                             int tipoConta = scanner.nextInt();
@@ -212,7 +213,7 @@ public class Cliente {
                                         while (true) {
                                             try {
                                                 Thread.sleep(20000); // Espera 10 segundos
-                                                System.out.println("Você está na conta de tipo "+TipoConta.CREDITO);
+                                                System.out.println("Você está na conta de tipo " + TipoConta.CREDITO);
 
                                             } catch (InterruptedException e) {
                                                 Thread.currentThread().interrupt();
@@ -248,7 +249,10 @@ public class Cliente {
                                                     // Solicitar o saldo
                                                     System.out.println("Digite o seu total saldo em conta: ");
                                                     double saldo = scanner.nextDouble();
+                                                    // TODO AO INVES DO METODO CALCULAR LIMITE USAR UM GET SALDO PARA
+                                                    //  CONTA DEBITO COM O USO DO CPF E AI SIM O METODO DE CALCULO
                                                     double limite = contaController.calcularLimite(saldo);
+                                                    contaCredito.setLimite(limite);
 
                                                     contaController.add(contaCredito);
 
@@ -309,9 +313,8 @@ public class Cliente {
                                                     } catch (ClienteRegraDeNegocio e) {
                                                         System.out.println(e.getMessage());
                                                     }
-                                                } else {
-                                                    break;
                                                 }
+                                                break;
                                             case 0:
                                                 System.out.println("Saindo...");
                                                 scanner.close();
@@ -328,7 +331,7 @@ public class Cliente {
                                         while (true) {
                                             try {
                                                 Thread.sleep(20000); // Espera 10 segundos
-                                                System.out.println("Você está na conta de tipo "+TipoConta.DEBITO);
+                                                System.out.println("Você está na conta de tipo " + TipoConta.DEBITO);
 
                                             } catch (InterruptedException e) {
                                                 Thread.currentThread().interrupt();
@@ -390,9 +393,9 @@ public class Cliente {
                                                     } catch (ClienteRegraDeNegocio e) {
                                                         System.out.println(e.getMessage());
                                                     }
-                                                } else {
-                                                    break;
                                                 }
+                                                break;
+
                                             case 0:
                                                 System.out.println("Saindo...");
                                                 scanner.close();
@@ -409,7 +412,7 @@ public class Cliente {
                                         while (true) {
                                             try {
                                                 Thread.sleep(20000); // Espera 10 segundos
-                                                System.out.println("Você está na conta de tipo "+TipoConta.POUPANCA);
+                                                System.out.println("Você está na conta de tipo " + TipoConta.POUPANCA);
 
                                             } catch (InterruptedException e) {
                                                 Thread.currentThread().interrupt();
@@ -476,9 +479,9 @@ public class Cliente {
                                                     } catch (ClienteRegraDeNegocio e) {
                                                         System.out.println(e.getMessage());
                                                     }
-                                                } else {
-                                                    break;
                                                 }
+                                                break;
+
                                             case 0:
                                                 System.out.println("Saindo...");
                                                 scanner.close();
@@ -494,7 +497,7 @@ public class Cliente {
                                         while (true) {
                                             try {
                                                 Thread.sleep(20000); // Espera 10 segundos
-                                                System.out.println("Você está na conta de tipo "+TipoConta.SALARIO);
+                                                System.out.println("Você está na conta de tipo " + TipoConta.SALARIO);
 
                                             } catch (InterruptedException e) {
                                                 Thread.currentThread().interrupt();
@@ -558,9 +561,9 @@ public class Cliente {
                                                     } catch (ClienteRegraDeNegocio e) {
                                                         System.out.println(e.getMessage());
                                                     }
-                                                } else {
-                                                    break;
                                                 }
+                                                break;
+
                                             case 0:
                                                 System.out.println("Saindo...");
                                                 scanner.close();
