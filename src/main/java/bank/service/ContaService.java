@@ -19,6 +19,7 @@ public interface ContaService {
      * @param contaDTO
      * @return
      */
+    //Metodo para o conta request
     public void add(ContaRequestDTO contaDTO);
 
     /**
